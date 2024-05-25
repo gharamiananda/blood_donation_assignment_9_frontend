@@ -1,0 +1,168 @@
+"use client";
+import assets from "@/assets";
+import PHDatePicker from "@/components/Forms/PHDatePicker";
+import PHForm from "@/components/Forms/PHForm";
+import PHInput from "@/components/Forms/PHInput";
+import PHTextArea from "@/components/Forms/PHTextArea";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+    Box,
+    Button,
+    Container,
+    Grid,
+    Stack,
+    Typography
+} from "@mui/material";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FieldValues } from "react-hook-form";
+import { z } from "zod";
+
+export const patientValidationSchema = z.object({
+  name: z.string().min(1, "Please enter your name!"),
+  email: z.string().email("Please enter a valid email address!"),
+  contactNumber: z
+    .string()
+    .regex(/^\d{11}$/, "Please provide a valid phone number!"),
+  address: z.string().min(1, "Please enter your address!"),
+});
+
+export const validationSchema = z.object({
+  password: z.string().min(6, "Must be at least 6 characters"),
+  patient: patientValidationSchema,
+});
+
+export const defaultValues = {
+  password: "",
+  patient: {
+    name: "",
+    email: "",
+    contactNumber: "",
+    address: "",
+  },
+};
+
+const RegisterPage = () => {
+  const router = useRouter();
+
+  const handleRegister = async (values: FieldValues) => {
+    // const data = modifyPayload(values);
+    // // console.log(data);
+    // try {
+    //   const res = await registerPatient(data);
+    //   // console.log(res);
+    //   if (res?.data?.id) {
+    //     toast.success(res?.message);
+    //     const result = await userLogin({
+    //       password: values.password,
+    //       email: values.patient.email,
+    //     });
+    //     if (result?.data?.accessToken) {
+    //       storeUserInfo({ accessToken: result?.data?.accessToken });
+    //       router.push("/dashboard");
+    //     }
+    //   }
+    // } catch (err: any) {
+    //   console.error(err.message);
+    // }
+  };
+
+  return (
+    <Container>
+      <Stack
+        sx={{
+          height: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Box
+          sx={{
+            maxWidth: 600,
+            width: "100%",
+            boxShadow: 1,
+            borderRadius: 1,
+            p: 4,
+            textAlign: "center",
+          }}
+        >
+          <Stack
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box>
+              <Image src={assets.svgs.logo} width={50} height={50} alt="logo" />
+            </Box>
+            <Box>
+              <Typography variant="h6" fontWeight={600}>
+              Blood Request
+              </Typography>
+            </Box>
+          </Stack>
+
+          <Box>
+            <PHForm
+              onSubmit={handleRegister}
+              resolver={zodResolver(validationSchema)}
+              defaultValues={defaultValues}
+            >
+              <Grid container spacing={2} my={1}>
+                <Grid item md={12}>
+                  <PHInput label="Name" fullWidth={true} name="patient.name" />
+                </Grid>
+                <Grid item md={6}>
+                  <PHInput
+                    label="Blood group"
+                    type="email"
+                    fullWidth={true}
+                    name="patient.email"
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <PHInput
+                    label="Number of Bag"
+                    type="password"
+                    fullWidth={true}
+                    name="password"
+                  />
+                </Grid>
+                <Grid item md={6}>
+                 
+            <PHDatePicker name="endDate" label="End Date" />
+
+                </Grid>
+                <Grid item md={6}>
+                  <PHInput
+                    label="Extra contact number"
+                    fullWidth={true}
+                    name="patient.address"
+                  />
+                </Grid>
+                <Grid item md={12}>
+                  <PHTextArea 
+                  name=""
+                  placeholder="Why blood is need?"
+                  sx={{width:'100%'}}
+                  />
+                </Grid>
+              </Grid>
+              <Button
+                sx={{
+                  margin: "10px 0px",
+                }}
+                fullWidth={true}
+                type="submit"
+              >Send Blood Request
+              </Button>
+            
+            </PHForm>
+          </Box>
+        </Box>
+      </Stack>
+    </Container>
+  );
+};
+
+export default RegisterPage;

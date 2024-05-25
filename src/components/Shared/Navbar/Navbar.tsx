@@ -33,11 +33,12 @@ const Navbar = () => {
                   href='/'
                   fontWeight={600}
                >
-                  P
+                  A
                   <Box component='span' color='#ffffff'>
-                     H
+                     G
                   </Box>{' '}
-                  Health Care
+                Blood Center
+             
                </Typography>
 
                <Stack direction='row' justifyContent='space-between' gap={4}>
@@ -64,6 +65,8 @@ const Navbar = () => {
                      </Typography>
                   ) : null}
                </Stack>
+               <Stack flexDirection="row" gap={2}>
+                  
 
                {userInfo?.userId ? (
                   <Button
@@ -78,6 +81,12 @@ const Navbar = () => {
                      Login
                   </Button>
                )}
+
+<Button component={Link} href='/blood-request'>
+                     Blood Request
+                  </Button>
+
+               </Stack>
             </Stack>
          </Container>
       </Box>

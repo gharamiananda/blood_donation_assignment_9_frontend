@@ -1,19 +1,19 @@
 "use client";
 
-import * as React from "react";
+import { useGetSingleUserQuery } from "@/redux/api/userApi";
+import MenuIcon from "@mui/icons-material/Menu";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import { Avatar, Badge, Stack } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import SideBar from "../SideBar/SideBar";
-import { Avatar, Badge, Stack } from "@mui/material";
+import * as React from "react";
 import AccountMenu from "../AccountMenu/AccountMenu";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import { useGetSingleUserQuery } from "@/redux/api/userApi";
+import SideBar from "../SideBar/SideBar";
 
 const drawerWidth = 240;
 
@@ -90,7 +90,7 @@ export default function DashboardDrawer({
                 component="div"
                 sx={{ color: "primary.main" }}
               >
-                Welcome to PH Health Care!
+                Welcome to AG  Blood Center!
               </Typography>
             </Box>
             <Stack direction="row" gap={3}>

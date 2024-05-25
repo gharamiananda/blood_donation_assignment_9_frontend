@@ -1,6 +1,7 @@
 import DashedLine from '@/components/UI/Doctor/DashedLine';
 import { Box, Container, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
+import DonorForm from '../components/DonorForm';
 
 type PropTypes = {
    params: {
@@ -150,12 +151,12 @@ console.log('doctor', doctor)
                </Stack>
             </Box>
          </Box>
-         <Box mb={5}>
+      
          <Box sx={{ bgcolor: 'white', p: 3, mt: 1 }}>
 
-
+<DonorForm />
             </Box>
-            </Box>
+          
       </Container>
    );
 };

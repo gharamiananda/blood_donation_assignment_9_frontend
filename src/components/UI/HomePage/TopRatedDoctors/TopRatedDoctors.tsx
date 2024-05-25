@@ -29,7 +29,7 @@ const TopRatedDoctors = async () => {
       >
          <Box sx={{ textAlign: 'center' }}>
             <Typography variant='h4' component='h1' fontWeight={700}>
-               Our Top Rated Doctors
+               Our Top Rated Donors
             </Typography>
             <Typography
                component='p'
