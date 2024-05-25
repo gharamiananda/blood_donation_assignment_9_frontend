@@ -64,25 +64,25 @@ const RegisterPage = () => {
     { value: "no", label: "No" },
   ];
   const handleRegister = async (values: FieldValues) => {
-    const data = modifyPayload(values);
+    // const data = modifyPayload(values);
 
-    try {
-      const res = await registerPatient(data);
-      // console.log(res);
-      // if (res?.data?.id) {
-      //   toast.success(res?.message);
-      //   const result = await userLogin({
-      //     password: values.password,
-      //     email: values.patient.email,
-      //   });
-      //   if (result?.data?.accessToken) {
-      //     storeUserInfo({ accessToken: result?.data?.accessToken });
-      //     router.push("/dashboard");
-      //   }
-      // }
-    } catch (err: any) {
-      console.error(err.message);
-    }
+    // try {
+    //   const res = await registerPatient(data);
+    //   // console.log(res);
+    //   // if (res?.data?.id) {
+    //   //   toast.success(res?.message);
+    //   //   const result = await userLogin({
+    //   //     password: values.password,
+    //   //     email: values.patient.email,
+    //   //   });
+    //   //   if (result?.data?.accessToken) {
+    //   //     storeUserInfo({ accessToken: result?.data?.accessToken });
+    //   //     router.push("/dashboard");
+    //   //   }
+    //   // }
+    // } catch (err: any) {
+    //   console.error(err.message);
+    // }
   };
 
   return (
