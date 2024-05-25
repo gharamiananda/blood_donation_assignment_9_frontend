@@ -41,7 +41,7 @@ const Navbar = () => {
                </Typography>
 
                <Stack direction='row' justifyContent='space-between' gap={4}>
-                  <Typography
+                  {/* <Typography
                      component={Link}
                      href='/consultation'
                      color='#ffffff'
@@ -49,9 +49,9 @@ const Navbar = () => {
                      Consultation
                   </Typography>
 
-                  <Typography color='#ffffff'>Diagnostics</Typography>
-                  <Typography component={Link} href='/doctors' color='#ffffff'>
-                     Doctors
+                  <Typography color='#ffffff'>Diagnostics</Typography> */}
+                  <Typography component={Link} href='/donors' color='#ffffff'>
+                     Donors
                   </Typography>
 
                   {userInfo?.userId ? (
