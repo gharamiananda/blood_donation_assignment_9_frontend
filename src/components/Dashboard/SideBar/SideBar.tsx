@@ -1,12 +1,12 @@
+import assets from "@/assets";
+import { getUserInfo } from "@/services/auth.services";
+import { UserRole } from "@/types";
+import { drawerItems } from "@/utils/drawerItems";
 import { Box, List, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import assets from "@/assets";
 import Link from "next/link";
-import { drawerItems } from "@/utils/drawerItems";
-import { UserRole } from "@/types";
-import SidebarItem from "./SidebarItem";
-import { getUserInfo } from "@/services/auth.services";
 import { useEffect, useState } from "react";
+import SidebarItem from "./SidebarItem";
 
 const SideBar = () => {
   const [userRole, setUserRole] = useState("");
@@ -38,7 +38,7 @@ const SideBar = () => {
             cursor: "pointer",
           }}
         >
-          PH Health Care
+          AG Blood Center
         </Typography>
       </Stack>
       <List>

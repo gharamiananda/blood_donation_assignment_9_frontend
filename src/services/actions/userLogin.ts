@@ -1,31 +1,35 @@
 // "use server";
 
 import { FieldValues } from 'react-hook-form';
-import setAccessToken from './setAccessToken';
 
 export const userLogin = async (data: FieldValues) => {
+let userInfo={}
+   try {
+      
+   
    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor-list`,
       {
-         method: 'POST',
+         method: 'GET',
          headers: {
             'Content-Type': 'application/json',
          },
-         body: JSON.stringify(data),
-         credentials: 'include',
          // cache: "no-store",
       }
    );
-   const userInfo = await res.json();
+    userInfo = await res.json();
 
-   const passwordChangeRequired = userInfo.data.needPasswordChange;
+   // const passwordChangeRequired = userInfo.data.needPasswordChange;
 
-   if (userInfo.data.accessToken) {
-      setAccessToken(userInfo.data.accessToken, {
-         redirect: '/dashboard',
-         passwordChangeRequired,
-      });
-   }
+   // if (userInfo.data.accessToken) {
+   //    setAccessToken(userInfo.data.accessToken, {
+   //       redirect: '/dashboard',
+   //       passwordChangeRequired,
+   //    });
+   // }
 
+} catch (error) {
+      
+}
    return userInfo;
 };

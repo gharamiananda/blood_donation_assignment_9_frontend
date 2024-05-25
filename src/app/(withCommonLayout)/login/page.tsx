@@ -2,15 +2,12 @@
 import assets from '@/assets';
 import PHForm from '@/components/Forms/PHForm';
 import PHInput from '@/components/Forms/PHInput';
-import { userLogin } from '@/services/actions/userLogin';
-import { storeUserInfo } from '@/services/auth.services';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { FieldValues } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 export const validationSchema = z.object({
@@ -23,19 +20,19 @@ const LoginPage = () => {
 
    const handleLogin = async (values: FieldValues) => {
       // console.log(values);
-      try {
-         const res = await userLogin(values);
-         if (res?.data?.accessTokeLn) {
-            toast.success(res?.message);
-            storeUserInfo({ accessToken: res?.data?.accessToken });
-            // router.push("/dashboard");
-         } else {
-            setError(res.message);
-            // console.log(res);
-         }
-      } catch (err: any) {
-         console.error(err.message);
-      }
+    //   try {
+    //      const res = await userLogin(values);
+    //      if (res?.data?.accessTokeLn) {
+    //         toast.success(res?.message);
+    //         storeUserInfo({ accessToken: res?.data?.accessToken });
+    //         // router.push("/dashboard");
+    //      } else {
+    //         setError(res.message);
+    //         // console.log(res);
+    //      }
+    //   } catch (err: any) {
+    //      console.error(err.message);
+    //   }
    };
 
    return (
@@ -73,7 +70,7 @@ const LoginPage = () => {
                   </Box>
                   <Box>
                      <Typography variant='h6' fontWeight={600}>
-                        Login PH HealthCare
+                        Login AG BloodCenter
                      </Typography>
                   </Box>
                </Stack>

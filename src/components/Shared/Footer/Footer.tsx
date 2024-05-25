@@ -1,10 +1,10 @@
+import facebookIcon from "@/assets/landing_page/facebook.png";
+import instagramIcon from "@/assets/landing_page/instagram.png";
+import linkedIcon from "@/assets/landing_page/linkedin.png";
+import twitterIcon from "@/assets/landing_page/twitter.png";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import facebookIcon from "@/assets/landing_page/facebook.png";
-import instagramIcon from "@/assets/landing_page/instagram.png";
-import twitterIcon from "@/assets/landing_page/twitter.png";
-import linkedIcon from "@/assets/landing_page/linkedin.png";
 
 const Footer = () => {
   return (
@@ -41,7 +41,7 @@ const Footer = () => {
           py={3}
         >
           <Typography component="p" color="white">
-            &copy;2024 Ph HealthCare. All Rights Reserved.
+            &copy;2024 AG BloodCenter. All Rights Reserved.
           </Typography>
           <Typography
             variant="h4"
@@ -50,11 +50,11 @@ const Footer = () => {
             fontWeight={600}
             color="white"
           >
-            P
+            A
             <Box component="span" color="primary.main">
-              H
+              G
             </Box>{" "}
-            Health Care
+            Blood Center
           </Typography>
           <Typography component="p" color="white">
             Privacy Policy! Terms & Conditions

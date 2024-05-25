@@ -1,27 +1,22 @@
 "use client";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
 import assets from "@/assets";
-import Link from "next/link";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import { modifyPayload } from "@/utils/modifyPayload";
-import { registerPatient } from "@/services/actions/registerPatient";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { userLogin } from "@/services/actions/userLogin";
-import { storeUserInfo } from "@/services/auth.services";
+import PHDatePicker from "@/components/Forms/PHDatePicker";
 import PHForm from "@/components/Forms/PHForm";
 import PHInput from "@/components/Forms/PHInput";
-import { z } from "zod";
+import PHTextArea from "@/components/Forms/PHTextArea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+    Box,
+    Button,
+    Container,
+    Grid,
+    Stack,
+    Typography
+} from "@mui/material";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FieldValues } from "react-hook-form";
+import { z } from "zod";
 
 export const patientValidationSchema = z.object({
   name: z.string().min(1, "Please enter your name!"),
@@ -51,25 +46,25 @@ const RegisterPage = () => {
   const router = useRouter();
 
   const handleRegister = async (values: FieldValues) => {
-    const data = modifyPayload(values);
-    // console.log(data);
-    try {
-      const res = await registerPatient(data);
-      // console.log(res);
-      if (res?.data?.id) {
-        toast.success(res?.message);
-        const result = await userLogin({
-          password: values.password,
-          email: values.patient.email,
-        });
-        if (result?.data?.accessToken) {
-          storeUserInfo({ accessToken: result?.data?.accessToken });
-          router.push("/dashboard");
-        }
-      }
-    } catch (err: any) {
-      console.error(err.message);
-    }
+    // const data = modifyPayload(values);
+    // // console.log(data);
+    // try {
+    //   const res = await registerPatient(data);
+    //   // console.log(res);
+    //   if (res?.data?.id) {
+    //     toast.success(res?.message);
+    //     const result = await userLogin({
+    //       password: values.password,
+    //       email: values.patient.email,
+    //     });
+    //     if (result?.data?.accessToken) {
+    //       storeUserInfo({ accessToken: result?.data?.accessToken });
+    //       router.push("/dashboard");
+    //     }
+    //   }
+    // } catch (err: any) {
+    //   console.error(err.message);
+    // }
   };
 
   return (
@@ -102,7 +97,7 @@ const RegisterPage = () => {
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Patient Register
+              Blood Request
               </Typography>
             </Box>
           </Stack>
@@ -119,7 +114,7 @@ const RegisterPage = () => {
                 </Grid>
                 <Grid item md={6}>
                   <PHInput
-                    label="Email"
+                    label="Blood group"
                     type="email"
                     fullWidth={true}
                     name="patient.email"
@@ -127,25 +122,29 @@ const RegisterPage = () => {
                 </Grid>
                 <Grid item md={6}>
                   <PHInput
-                    label="Password"
+                    label="Number of Bag"
                     type="password"
                     fullWidth={true}
                     name="password"
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <PHInput
-                    label="Contact Number"
-                    type="tel"
-                    fullWidth={true}
-                    name="patient.contactNumber"
-                  />
+                 
+            <PHDatePicker name="endDate" label="End Date" />
+
                 </Grid>
                 <Grid item md={6}>
                   <PHInput
-                    label="Address"
+                    label="Extra contact number"
                     fullWidth={true}
                     name="patient.address"
+                  />
+                </Grid>
+                <Grid item md={12}>
+                  <PHTextArea 
+                  name=""
+                  placeholder="Why blood is need?"
+                  sx={{width:'100%'}}
                   />
                 </Grid>
               </Grid>
@@ -155,12 +154,9 @@ const RegisterPage = () => {
                 }}
                 fullWidth={true}
                 type="submit"
-              >
-                Register
+              >Send Blood Request
               </Button>
-              <Typography component="p" fontWeight={300}>
-                Do you already have an account? <Link href="/login">Login</Link>
-              </Typography>
+            
             </PHForm>
           </Box>
         </Box>
