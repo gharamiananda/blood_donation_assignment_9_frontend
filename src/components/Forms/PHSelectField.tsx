@@ -2,6 +2,11 @@ import { MenuItem, SxProps, TextField } from "@mui/material";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
+interface IItem {
+  value: string;
+  label: string;
+}
+
 interface ITextField {
   name: string;
   size?: "small" | "medium";
@@ -10,7 +15,7 @@ interface ITextField {
   required?: boolean;
   fullWidth?: boolean;
   sx?: SxProps;
-  items: string[];
+  items: IItem[];
 }
 
 const PHSelectField = ({
@@ -45,9 +50,9 @@ const PHSelectField = ({
             isError ? (formState.errors[name]?.message as string) : ""
           }
         >
-          {items.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
+          {items.map((item) => (
+            <MenuItem key={item.value} value={item.value}>
+              {item.label}
             </MenuItem>
           ))}
         </TextField>

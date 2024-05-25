@@ -1,21 +1,29 @@
 "use client";
-import assets from "@/assets";
-import PHForm from "@/components/Forms/PHForm";
-import PHInput from "@/components/Forms/PHInput";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
-    Box,
-    Button,
-    Container,
-    Grid,
-    Stack,
-    Typography
+  Box,
+  Button,
+  Container,
+  Grid,
+  Stack,
+  TextField,
+  Typography,
 } from "@mui/material";
 import Image from "next/image";
+import assets from "@/assets";
 import Link from "next/link";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { modifyPayload } from "@/utils/modifyPayload";
+import { registerPatient } from "@/services/actions/registerPatient";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { FieldValues } from "react-hook-form";
+import { userLogin } from "@/services/actions/userLogin";
+import { storeUserInfo } from "@/services/auth.services";
+import PHForm from "@/components/Forms/PHForm";
+import PHInput from "@/components/Forms/PHInput";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import PHSelectField from "@/components/Forms/PHSelectField";
+import { Gender } from "@/types";
 
 export const patientValidationSchema = z.object({
   name: z.string().min(1, "Please enter your name!"),
@@ -43,27 +51,38 @@ export const defaultValues = {
 
 const RegisterPage = () => {
   const router = useRouter();
-
+  const bloodTypes = [
+    { value: "A_POSITIVE", label: "A+" },
+    { value: "A_NEGETIVE", label: "A-" },
+    { value: "B_POSITIVE", label: "B+" },
+    { value: "B_NEGETIVE", label: "B-" },
+    { value: "AB_POSITIVE", label: "AB+" },
+    { value: "AB_NEGETIVE", label: "AB-" },
+  ];
+  const availabilityData = [
+    { value: "yes", label: "Yes" },
+    { value: "no", label: "No" },
+  ];
   const handleRegister = async (values: FieldValues) => {
-    // const data = modifyPayload(values);
-    // // console.log(data);
-    // try {
-    //   const res = await registerPatient(data);
-    //   // console.log(res);
-    //   if (res?.data?.id) {
-    //     toast.success(res?.message);
-    //     const result = await userLogin({
-    //       password: values.password,
-    //       email: values.patient.email,
-    //     });
-    //     if (result?.data?.accessToken) {
-    //       storeUserInfo({ accessToken: result?.data?.accessToken });
-    //       router.push("/dashboard");
-    //     }
-    //   }
-    // } catch (err: any) {
-    //   console.error(err.message);
-    // }
+    const data = modifyPayload(values);
+
+    try {
+      const res = await registerPatient(data);
+      // console.log(res);
+      // if (res?.data?.id) {
+      //   toast.success(res?.message);
+      //   const result = await userLogin({
+      //     password: values.password,
+      //     email: values.patient.email,
+      //   });
+      //   if (result?.data?.accessToken) {
+      //     storeUserInfo({ accessToken: result?.data?.accessToken });
+      //     router.push("/dashboard");
+      //   }
+      // }
+    } catch (err: any) {
+      console.error(err.message);
+    }
   };
 
   return (
@@ -127,19 +146,50 @@ const RegisterPage = () => {
                     name="password"
                   />
                 </Grid>
-                <Grid item md={6}>
-                  <PHInput
-                    label="Contact Number"
-                    type="tel"
-                    fullWidth={true}
-                    name="patient.contactNumber"
+                <Grid item md={4}>
+                  <PHSelectField
+                    items={bloodTypes}
+                    name="bloodTypes"
+                    label="Blood Types"
+                    sx={{ mb: 2 }}
+                    fullWidth
                   />
                 </Grid>
-                <Grid item md={6}>
-                  <PHInput
-                    label="Address"
+                <Grid item md={4}>
+                  <PHInput label="Age" fullWidth={true} name="patient.age" />
+                </Grid>
+                <Grid item md={4}>
+                  <PHSelectField
+                    label="Availability"
+                    items={availabilityData}
                     fullWidth={true}
-                    name="patient.address"
+                    name="patient.availability"
+                  />
+                </Grid>
+
+                <Grid item md={12}>
+                  <PHInput
+                    label="Location"
+                    fullWidth={true}
+                    name="patient.location"
+                  />
+                </Grid>
+
+
+                {/* <Grid item md={12}>
+                  <PHInput
+                    label="Availability"
+                    fullWidth={true}
+                    name="patient.availability"
+                  />
+                </Grid> */}
+                <Grid item md={12}>
+                  <PHInput
+                    label="Bio"
+                    fullWidth={true}
+                    name="patient.bio"
+                    multiline={true}
+                    rows={4}
                   />
                 </Grid>
               </Grid>

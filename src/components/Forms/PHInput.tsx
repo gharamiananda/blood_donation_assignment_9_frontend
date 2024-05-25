@@ -10,6 +10,8 @@ type TInputProps = {
   sx?: SxProps;
   placeholder?: string;
   required?: boolean;
+  multiline?: boolean;
+  rows?: number;
 };
 
 const PHInput = ({
@@ -17,9 +19,11 @@ const PHInput = ({
   label,
   type = "text",
   size = "small",
-  fullWidth,
+  fullWidth = true,
   sx,
   required,
+  multiline = false,
+  rows = 4,
 }: TInputProps) => {
   const { control } = useFormContext();
   return (
@@ -39,6 +43,8 @@ const PHInput = ({
           required={required}
           error={!!error?.message}
           helperText={error?.message}
+          multiline={multiline}
+          rows={multiline ? rows : undefined} // Only set rows if multiline is true
         />
       )}
     />
