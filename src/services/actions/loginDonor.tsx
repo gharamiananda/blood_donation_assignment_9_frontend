@@ -10,8 +10,7 @@ export const loginDonor = async (data: FieldValues) => {
         headers: {
            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
-        credentials: 'include',
+        body: JSON.stringify(data)
         // cache: "no-store",
      }
     );
