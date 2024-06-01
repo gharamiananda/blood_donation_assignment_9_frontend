@@ -7,7 +7,7 @@ import {
   useGetDoctorQuery,
   useUpdateDoctorMutation,
 } from "@/redux/api/doctorApi";
-import { Gender } from "@/types";
+// import { Gender } from "@/types";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
@@ -123,14 +123,14 @@ const DoctorUpdatePage = ({ params }: TParams) => {
                 sx={{ mb: 2 }}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            {/* <Grid item xs={12} sm={12} md={4}>
               <PHSelectField
                 items={Gender}
                 name="gender"
                 label="Gender"
                 sx={{ mb: 2 }}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} sm={12} md={4}>
               <PHInput
                 name="apointmentFee"

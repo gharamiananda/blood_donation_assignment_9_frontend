@@ -12,7 +12,7 @@ import { FieldValues } from 'react-hook-form';
 import { Button, Grid } from '@mui/material';
 import PHInput from '@/components/Forms/PHInput';
 import PHSelectField from '@/components/Forms/PHSelectField';
-import { Gender } from '@/types';
+// import { Gender } from '@/types';
 import MultipleSelectChip from './MultipleSelectChip';
 import { useGetAllSpecialtiesQuery } from '@/redux/api/specialtiesApi';
 import { z } from 'zod';
@@ -157,7 +157,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
                      fullWidth
                   />
                </Grid>
-               <Grid item xs={12} sm={12} md={4}>
+               {/* <Grid item xs={12} sm={12} md={4}>
                   <PHSelectField
                      items={Gender}
                      name='gender'
@@ -165,7 +165,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
                      sx={{ mb: 2 }}
                      fullWidth
                   />
-               </Grid>
+               </Grid> */}
                <Grid item xs={12} sm={12} md={4}>
                   <PHInput
                      name='apointmentFee'

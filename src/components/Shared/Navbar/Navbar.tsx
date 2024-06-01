@@ -15,81 +15,101 @@ const Navbar = () => {
    };
 
    return (
-      <Box
-         sx={{
-            bgcolor: 'primary.main',
-         }}
-      >
-         <Container>
-            <Stack
-               py={2}
-               direction='row'
-               justifyContent='space-between'
-               alignItems='center'
-            >
-               <Typography
-                  variant='h4'
-                  component={Link}
-                  href='/'
-                  fontWeight={600}
-               >
-                  A
-                  <Box component='span' color='#ffffff'>
-                     G
-                  </Box>{' '}
-                Blood Center
-             
-               </Typography>
+     
+ <header>
+ <div className="header_top d-none d-lg-block d-xl-block d-xxl-block">
+   <div className="container">
+     <div className="row">
+       <div className="col-xl-3 col-lg-3">
+         <div className="header_top_content">
+           <span><i className="fa-solid fa-phone" /></span>
+           <a href="tel:01977259912">+01 (977) 2599 12</a>
+         </div>
+       </div>
+       <div className="col-xl-3 col-lg-3">
+         <div className="header_top_content">
+           <span><i className="fa-solid fa-envelope" /></span>
+           <a href="mailto:company@domin.com">company@domin.com</a>
+         </div>
+       </div>
+       <div className="col-xl-3 col-lg-3">
+         <div className="header_top_content">
+           <span><i className="fa-solid fa-location-dot" /></span>
+           <a href="#">3146 Koontz Lane, USA</a>
+         </div>
+       </div>
+       <div className="col-xl-3 col-lg-3">
+         <div className="header_top_social">
+           <p>Follow Now</p>
+           <ul className="d-flex">
+             <li><a href="#"><i className="fa-brands fa-facebook-f" /></a></li>
+             <li><a href="#"><i className="fa-brands fa-twitter" /></a></li>
+             <li><a href="#"><i className="fa-brands fa-instagram" /></a></li>
+             <li><a href="#"><i className="fa-brands fa-pinterest-p" /></a></li>
+           </ul>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ <div className="header_bottom header_bottom2">
+  <div className="container">
+    <div className="row align-items-center position-relative">
+      <div className="col-xl-3 col-lg-3 col-md-4 col-6">
+        <div className="header_logo">
+          <Link href="/" >
+         <h6 className='red_color'>
+         Ag Blood Center   
+            </h6>   
+            
+            </Link>
+        </div>
+      </div>
+      <div className="col-xl-6 col-lg- d-none d-xxl-block d-xl-block">
+        <ul className="main_menu">
+        
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/about">About Us</Link></li>
+          <li><Link href="/donor-list">Donor list</Link></li>
 
-               <Stack direction='row' justifyContent='space-between' gap={4}>
-                  {/* <Typography
-                     component={Link}
-                     href='/consultation'
-                     color='#ffffff'
-                  >
-                     Consultation
-                  </Typography>
+          <li><Link href="profile">My Profile</Link></li>
 
-                  <Typography color='#ffffff'>Diagnostics</Typography> */}
-                  <Typography component={Link} href='/donors' color='#ffffff'>
-                     Donors
-                  </Typography>
+        </ul>
+      </div>
+      <div className="col-xl-3 col-lg-2  d-none d-xxl-block d-xl-block">
+        <div className="header_search_menu d-flex">
+         
+          <div>
+            <Link href="/login" className="red_btn get_code">Login</Link>
+          </div>
+        </div>
+      </div>
+      {/* mobile menu bar */}
+      <div className="col-lg-10 col-md-8 col-6 d-block d-xxl-none d-xl-none">
+        <div className="d-flex align-items-center gap-2 justify-content-end">
+          <div className="dropdown dropdown_search">
+            <button className="search-btn " data-bs-toggle="dropdown" aria-expanded="true"><i className="fa-solid fa-magnifying-glass" /></button>
+            <div className="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
+              <form className="search-form d-flex align-items-center gap-2">
+                <input type="text" placeholder="Search..." className="theme-input bg-transparent" />
+                <button type="submit" className="submit-btn">Go</button>
+              </form>
+            </div>
+          </div>
+          <div className="mobile_menu">
+            <button className="header_toggle_btn bg-transparent border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-mobile">
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-                  {userInfo?.userId ? (
-                     <Typography
-                        component={Link}
-                        href='/dashboard'
-                        color='#ffffff'
-                     >
-                        Dashboard
-                     </Typography>
-                  ) : null}
-               </Stack>
-               <Stack flexDirection="row" gap={2}>
-                  
-
-               {userInfo?.userId ? (
-                  <Button
-                     color='error'
-                     onClick={handleLogOut}
-                     sx={{ boxShadow: 0 }}
-                  >
-                     Logout
-                  </Button>
-               ) : (
-                  <Button component={Link} href='/login'>
-                     Login
-                  </Button>
-               )}
-
-<Button component={Link} href='/blood-request'>
-                     Blood Request
-                  </Button>
-
-               </Stack>
-            </Stack>
-         </Container>
-      </Box>
+</header>
    );
 };
 

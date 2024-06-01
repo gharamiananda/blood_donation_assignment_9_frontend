@@ -15,10 +15,15 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { FC } from "react";
 import { FieldValues } from "react-hook-form";
 import { z } from "zod";
 
-export const patientValidationSchema = z.object({
+const BloodRegisterPage:FC = () => {
+  const router = useRouter();
+
+
+ const patientValidationSchema = z.object({
   name: z.string().min(1, "Please enter your name!"),
   email: z.string().email("Please enter a valid email address!"),
   contactNumber: z
@@ -27,12 +32,12 @@ export const patientValidationSchema = z.object({
   address: z.string().min(1, "Please enter your address!"),
 });
 
-export const validationSchema = z.object({
+ const validationSchema = z.object({
   password: z.string().min(6, "Must be at least 6 characters"),
   patient: patientValidationSchema,
 });
 
-export const defaultValues = {
+ const defaultValues = {
   password: "",
   patient: {
     name: "",
@@ -42,8 +47,6 @@ export const defaultValues = {
   },
 };
 
-const RegisterPage = () => {
-  const router = useRouter();
 
   const handleRegister = async (values: FieldValues) => {
     // const data = modifyPayload(values);
@@ -165,4 +168,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default BloodRegisterPage;

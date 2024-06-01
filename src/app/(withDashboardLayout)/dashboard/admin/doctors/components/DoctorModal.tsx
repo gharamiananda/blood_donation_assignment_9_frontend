@@ -1,5 +1,5 @@
 import { Button, Grid } from "@mui/material";
-import { Gender } from "@/types/common";
+// import { Gender } from "@/types/common";
 import { FieldValues } from "react-hook-form";
 import PHForm from "@/components/Forms/PHForm";
 import PHInput from "@/components/Forms/PHInput";
@@ -116,14 +116,14 @@ const DoctorModal = ({ open, setOpen }: TProps) => {
               sx={{ mb: 2 }}
             />
           </Grid>
-          <Grid item xs={12} sm={12} md={4}>
+          {/* <Grid item xs={12} sm={12} md={4}>
             <PHSelectField
               items={Gender}
               name="doctor.gender"
               label="Gender"
               sx={{ mb: 2 }}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={12} md={4}>
             <PHInput
               name="doctor.apointmentFee"

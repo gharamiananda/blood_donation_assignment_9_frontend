@@ -1,4 +1,4 @@
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+// import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
    Box,
    Button,
@@ -84,7 +84,7 @@ const TopRatedDoctors = async () => {
                               color='text.secondary'
                               mt={1}
                            >
-                              <LocationOnIcon /> {doctor.address}
+                           {/* {doctor.address} */}
                            </Typography>
                         </CardContent>
                         <CardActions

@@ -16,7 +16,7 @@ export const scheduleApi = baseApi.injectEndpoints({
       query: (arg: Record<string, any>) => {
         return {
           url: "/schedule",
-          method: "GET",
+          method: "GET", 
           params: arg,
         };
       },
