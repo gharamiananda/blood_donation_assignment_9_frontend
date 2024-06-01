@@ -12,7 +12,7 @@ import { FieldValues } from 'react-hook-form';
 import { Button, Grid } from '@mui/material';
 import PHInput from '@/components/Forms/PHInput';
 import PHSelectField from '@/components/Forms/PHSelectField';
-import { Gender } from '@/types';
+// import { Gender } from '@/types';
 import MultipleSelectChip from './MultipleSelectChip';
 import { useGetAllSpecialtiesQuery } from '@/redux/api/specialtiesApi';
 import { z } from 'zod';

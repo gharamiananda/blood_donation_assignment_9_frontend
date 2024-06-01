@@ -81,11 +81,11 @@ const createUserNameValidationSchema = z.object({
     const data = modifyPayload(values);
 
     try {
-      const result :any= await registerPatient(data);
-      console.log(result);
-      if (result?.data?.id) {
-        toast.success(result?.message);
-        const result = await userLogin({
+      const res :any= await registerPatient(data);
+     
+      if (res?.data?.id) {
+        toast.success(res?.message);
+        const result :any= await userLogin({
           password: values.password,
           email: values.patient.email,
         });

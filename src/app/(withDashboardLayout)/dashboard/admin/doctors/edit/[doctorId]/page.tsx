@@ -7,7 +7,7 @@ import {
   useGetDoctorQuery,
   useUpdateDoctorMutation,
 } from "@/redux/api/doctorApi";
-import { Gender } from "@/types";
+// import { Gender } from "@/types";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
