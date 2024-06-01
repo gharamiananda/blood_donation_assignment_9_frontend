@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import assets from "@/assets";
 import Link from "next/link";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues, FieldValue } from "react-hook-form";
 import { modifyPayload } from "@/utils/modifyPayload";
 import { registerPatient } from "@/services/actions/registerPatient";
 import { toast } from "sonner";
@@ -22,70 +22,47 @@ import PHForm from "@/components/Forms/PHForm";
 import PHInput from "@/components/Forms/PHInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import PHSelectField from "@/components/Forms/PHSelectField";
-import { Gender } from "@/types";
+import AGInput from "@/components/Forms/AGInput";
+import { loginDonor } from "@/services/actions/loginDonor";
 
 
 const LoginPage = () => {
   const router = useRouter();
-  const bloodTypes = [
-    { value: "A_POSITIVE", label: "A+" },
-    { value: "A_NEGETIVE", label: "A-" },
-    { value: "B_POSITIVE", label: "B+" },
-    { value: "B_NEGETIVE", label: "B-" },
-    { value: "AB_POSITIVE", label: "AB+" },
-    { value: "AB_NEGETIVE", label: "AB-" },
-  ];
-  const availabilityData = [
-    { value: "yes", label: "Yes" },
-    { value: "no", label: "No" },
-  ];
   const handleRegister = async (values: FieldValues) => {
-    // const data = modifyPayload(values);
+    const data = values;
 
-    // try {
-    //   const res = await registerPatient(data);
-    //   // console.log(res);
-    //   // if (res?.data?.id) {
-    //   //   toast.success(res?.message);
-    //   //   const result = await userLogin({
-    //   //     password: values.password,
-    //   //     email: values.patient.email,
-    //   //   });
-    //   //   if (result?.data?.accessToken) {
-    //   //     storeUserInfo({ accessToken: result?.data?.accessToken });
-    //   //     router.push("/dashboard");
-    //   //   }
-    //   // }
-    // } catch (err: any) {
-    //   console.error(err.message);
-    // }
+    try {
+      const res = await loginDonor(data);
+      console.log(res,'loginres');
+
+
+      if (res?.data?.id) {
+        toast.success(res?.message);
+        // const result = await userLogin({
+        //   password: values.password,
+        //   email: values.patient.email,
+        // });
+        // if (result?.data?.accessToken) {
+        //   // storeUserInfo({ accessToken: result?.data?.accessToken });
+        //   // router.push("/dashboard");
+        // }
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
   };
 
 
- const patientValidationSchema = z.object({
-  name: z.string().min(1, "Please enter your name!"),
-  email: z.string().email("Please enter a valid email address!"),
-  contactNumber: z
-    .string()
-    .regex(/^\d{11}$/, "Please provide a valid phone number!"),
-  address: z.string().min(1, "Please enter your address!"),
-});
-
  const validationSchema = z.object({
-  password: z.string().min(6, "Must be at least 6 characters"),
-  patient: patientValidationSchema,
+  email: z.string({ required_error: 'Email is required.' }),
+  password: z.string({ required_error: 'Password is required' }),
 });
 
  const defaultValues = {
-  password: "",
-  patient: {
-    name: "",
+  
+    password: "",
     email: "",
-    contactNumber: "",
-    address: "",
-  },
-};
+  }
   return (
     <>
 
@@ -104,35 +81,32 @@ const LoginPage = () => {
           <div className="row justify-content-center">
             <div className="col-xl-8">
               <div className="km__form__box">
-                <form action="#">
-                 
+              <PHForm
+              onSubmit={handleRegister}
+              resolver={zodResolver(validationSchema)}
+              defaultValues={defaultValues}  >
+   
+      <div className="col-xl-12 col-12 mb-4">
+        <AGInput
+      label="email" required
+        name="email" className="form-control" placeholder="Your email"
+        />
+      </div>
+      <div className="col-xl-12 col-12 mb-4">
+        <AGInput
+      label="password" required
+        name="password" className="form-control" placeholder="Your password"
+        />
+      </div>   
                 
                  
              
-                  <div className="row align-items-center mb-10 g-4">
-                    
-                    <div className="col-md-12">
-                      <label className="fs-14">
-                        Number
-                      </label>
-                      <input type="text" />
-                    </div>
-                  </div>
-                  <div className="row align-items-center mb-10 g-4">
-                    
-                    <div className="col-md-12">
-                      <label className="fs-14">
-                        Number
-                      </label>
-                      <input type="text" />
-                    </div>
-                  </div>
                  
                 
                   <div className="row align-items-center g-4">
                    
                     <div className="col-md-12">
-                      <button type="button" className="km__register__btn pt-3 pb-3 mt-3">
+                      <button type="submit" className="km__register__btn pt-3 pb-3 mt-3">
                         Submit
                         <span><i className="fas fa-arrow-right" /></span>
                       </button>
@@ -149,7 +123,8 @@ const LoginPage = () => {
 
                     </p>
                   </div>
-                </form>
+                  </PHForm>
+
               </div>
             </div>
           </div>

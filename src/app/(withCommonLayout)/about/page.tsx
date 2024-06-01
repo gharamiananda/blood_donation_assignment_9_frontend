@@ -38,7 +38,7 @@ const AboutPage = () => {
       </div>
       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
         <div className="km__who__imgbx img">
-          <Image width={500} height={500} src="assets/images/about/doctor.jpg" alt="images not found" className="img-fluid" />
+          <Image width={500} height={500} src="/assets/images/about/doctor.jpg" alt="images not found" className="img-fluid" />
         </div>
       </div>
     </div>

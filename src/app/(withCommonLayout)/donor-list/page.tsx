@@ -93,7 +93,7 @@ const DonorListPage = () => {
           <div className="team_img ">
             <Image
              width={500} 
-            height={500} src="assets/images/t1.jpg" alt='' className="w-100" />
+            height={500} src="/assets/images/t1.jpg" alt='' className="w-100" />
             <ul className="d-flex">
               <li><a href="#"><i className="fa-brands fa-facebook-f" /></a></li>
               <li><a href="#"><i className="fa-brands fa-twitter" /></a></li>

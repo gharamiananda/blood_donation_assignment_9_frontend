@@ -23,23 +23,33 @@ import PHInput from "@/components/Forms/PHInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PHSelectField from "@/components/Forms/PHSelectField";
-import { Gender } from "@/types";
+import AGInput from "@/components/Forms/AGInput";
+import AgSelectField from "@/components/Forms/AgSelectField";
+import { BloodGroup,Gender } from "@/types/donor";
 
 
 const RegisterPage = () => {
 
- const patientValidationSchema = z.object({
-  name: z.string().min(1, "Please enter your name!"),
-  email: z.string().email("Please enter a valid email address!"),
-  contactNumber: z
-    .string()
-    .regex(/^\d{11}$/, "Please provide a valid phone number!"),
-  address: z.string().min(1, "Please enter your address!"),
+
+const createUserNameValidationSchema = z.object({
+  firstName: z.string().min(1).max(20),
+  middleName: z.string().max(20).optional(),
+  lastName: z.string().max(20),
 });
 
  const validationSchema = z.object({
-  password: z.string().min(6, "Must be at least 6 characters"),
-  patient: patientValidationSchema,
+  password: z.string().max(20),
+  username: z.string().max(20),
+ 
+  name: createUserNameValidationSchema,
+  gender: z.enum([...Gender] as [string, ...string[]]),
+  dateOfBirth: z.string().optional(),
+  email: z.string().email(),
+  contactNo: z.string(),
+  emergencyContactNo: z.string().optional(),
+  bloogGroup: z.enum([...BloodGroup] as [string, ...string[]]),
+  presentAddress: z.string(),
+  permanentAddress: z.string(),
 });
 
  const defaultValues = {
@@ -59,31 +69,34 @@ const RegisterPage = () => {
     { value: "B_NEGETIVE", label: "B-" },
     { value: "AB_POSITIVE", label: "AB+" },
     { value: "AB_NEGETIVE", label: "AB-" },
+
+    { value: "O_POSITIVE", label: "O+" },
+    { value: "O_NEGETIVE", label: "O-" },
   ];
   const availabilityData = [
     { value: "yes", label: "Yes" },
     { value: "no", label: "No" },
   ];
   const handleRegister = async (values: FieldValues) => {
-    // const data = modifyPayload(values);
+    const data = modifyPayload(values);
 
-    // try {
-    //   const res = await registerPatient(data);
-    //   // console.log(res);
-    //   // if (res?.data?.id) {
-    //   //   toast.success(res?.message);
-    //   //   const result = await userLogin({
-    //   //     password: values.password,
-    //   //     email: values.patient.email,
-    //   //   });
-    //   //   if (result?.data?.accessToken) {
-    //   //     storeUserInfo({ accessToken: result?.data?.accessToken });
-    //   //     router.push("/dashboard");
-    //   //   }
-    //   // }
-    // } catch (err: any) {
-    //   console.error(err.message);
-    // }
+    try {
+      const result :any= await registerPatient(data);
+      console.log(result);
+      if (result?.data?.id) {
+        toast.success(result?.message);
+        const result = await userLogin({
+          password: values.password,
+          email: values.patient.email,
+        });
+        if (result?.data?.accessToken) {
+          storeUserInfo({ accessToken: result?.data?.accessToken });
+          // router.push("/dashboard");
+        }
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
   };
 
   return (
@@ -95,32 +108,107 @@ const RegisterPage = () => {
         
      <div className="row">
   <div className="appointment">
-    <h4>Request Appointment Here</h4>
-    <form action="#" className="row hm1_contact_form">
-      <div className="col-xl-6 col-12 mb-4">
-        <input type="text" className="form-control" placeholder="Your Name" />
+    <h4 className="mb-3">Register Form</h4>
+
+    <PHForm
+              onSubmit={handleRegister}
+              resolver={zodResolver(validationSchema)}
+              defaultValues={defaultValues}  >
+   
+      <div className="col-xl-4 col-12 mb-4">
+        <AGInput
+      label="firstName" required
+        name="name.firstName" className="form-control" placeholder="Your firstName"
+        />
+      </div>
+
+      <div className="col-xl-4 col-12 mb-4">
+        <AGInput
+      label="middleName" required
+        name="name.middleName" className="form-control" placeholder="Your middleName"
+        />
+      </div>
+      <div className="col-xl-4 col-12 mb-4">
+        <AGInput
+      label="lastName" required
+        name="name.lastName" className="form-control" placeholder="Your lastName"
+        />
       </div>
       <div className="col-xl-6 col-12 mb-4">
-        <input type="text" className="form-control" placeholder="Phone Number" />
+      <AGInput
+      label="Username" required
+      name="username" className="form-control" placeholder="Your username"
+      />
+    
       </div>
-      <div className="col-12 mb-4">
-        <input type="text" className="form-control" placeholder="Your Email" />
+      <div className="col-xl-6 col-12 mb-4">
+      <AGInput
+      label="Password" required
+      name="password" className="form-control" placeholder="Your password"
+      />
+    
       </div>
-      <div className="col-12 mb-4">
-        <select className="form-select">
-          <option value="d">Donation Type</option>
-          <option value="d">Donation Type</option>
-          <option value="d">Donation Type</option>
-          <option value="d">Donation Type</option>
-        </select>
+      <div className="col-xl-6 col-12 mb-4">
+      <AGInput
+      label="contactNo" required
+      name="contactNo" className="form-control" placeholder="Your contactNo"
+      />
+    
       </div>
-      <div className="col-12 mb-4">
-        <textarea className="form-control" defaultValue={"Your Message"} />
+      <div className="col-6 mb-4">
+      <AGInput
+      label="email" required
+      name="email" className="form-control" placeholder="Your email"
+      />
+    
+     
       </div>
+      <div className="col-6 mb-4">
+      <AGInput
+      type="date"
+      label="dateOfBirth" required
+      name="dateOfBirth" className="form-control" placeholder="Your dateOfBirth"
+      />
+    
+     
+      </div>
+      
+      <div className="col-6 mb-4">
+      <AgSelectField
+        label="Gender"
+        name="gender"
+        items={[{label:'Male',value:'male'},{label:'Female',value:'female'},{label:'other',value:'other'}]}
+        
+        />
+      </div>
+      <div className="col-6 mb-4">
+        <AgSelectField
+        label="Bloog Group"
+        name="bloogGroup"
+        items={bloodTypes}
+        
+        />
+      </div>
+      <div className="col-xl-6 col-12 mb-4">
+      <AGInput
+      label="presentAddress" required
+      name="presentAddress" className="form-control" placeholder="Your presentAddress"
+      />
+      </div> 
+      <div className="col-xl-6 col-12 mb-4">
+      <AGInput
+      label="permanentAddress" required
+      name="permanentAddress" className="form-control" placeholder="Your permanentAddress"
+      />
+      </div> 
+      
+      
+    
       <div className="col-12">
         <button type="submit" className="red_btn">Submit Now</button>
       </div>
-    </form>
+    
+    </PHForm>
   </div>
 </div>
 
@@ -133,3 +221,20 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
+
+
+
+
+// password: z.string().max(20),
+// username: z.string().max(20),
+
+// name: createUserNameValidationSchema,
+// gender: z.enum([...Gender] as [string, ...string[]]),
+// dateOfBirth: z.string().optional(),
+// email: z.string().email(),
+// contactNo: z.string(),
+// emergencyContactNo: z.string().optional(),
+// bloogGroup: z.enum([...BloodGroup] as [string, ...string[]]),
+// presentAddress: z.string(),
+// permanentAddress: z.string(),
