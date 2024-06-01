@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const AboutPage = () => {
@@ -31,12 +33,12 @@ const AboutPage = () => {
             pain. These cases are perfectly simple and easy to distinguish.
             In a free hour, when untrammelled and when nothing prevents
           </p>
-          <a href="about.html" className="primary__btn">Explore Now</a>
+          +<Link href="/donor-list" className="primary__btn">Explore Now</Link>\
         </div>
       </div>
       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
         <div className="km__who__imgbx img">
-          <img src="assets/images/about/doctor.jpg" alt="images not found" className="img-fluid" />
+          <Image width={500} height={500} src="assets/images/about/doctor.jpg" alt="images not found" className="img-fluid" />
         </div>
       </div>
     </div>

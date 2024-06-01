@@ -1,3 +1,26 @@
+import Image from 'next/image';
+import help1 from '../../assets/images/help1.png';
+import help2 from '../../assets/images/help2.png';
+import r1 from '../../assets/images/r1.jpg';
+import r2 from '../../assets/images/r2.jpg';
+
+
+
+import s1 from '../../assets/images/s1.jpg';
+import s2 from '../../assets/images/s2.jpg';
+import s3 from '../../assets/images/s3.jpg';
+import d1 from '../../assets/images/d1.png';
+import d2 from '../../assets/images/d2.png';
+import d3 from '../../assets/images/d3.png';
+import b1 from '../../assets/images/b1.png';
+
+
+import Link from 'next/link';
+
+
+
+
+
 const HomePage = () => {
   return (
     <>
@@ -6,25 +29,14 @@ const HomePage = () => {
 
       <>
 
-        <div className="preloader" style={{ display: 'none' }}>
-          <h1>Blad Ai</h1>
-          <div className="preload-progress">
-            <span />
-          </div>
-        </div>
+      
 
-        <div className="progress-wrap cursor-pointer active-progress">
-          <svg className="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style={{ transition: 'stroke-dashoffset 10ms linear', strokeDasharray: '307.919px, 307.919px', strokeDashoffset: '307.919px' }}>
-            </path>
-          </svg>
-        </div>
+<section className='position-relative'>
 
 
 
-
-        <section className="hm1_hero_slider slick-initialized slick-slider"><button className="prev-arrow slick-arrow" style={{}}><i className="fa-solid fa-chevron-left" /></button><div className="slick-list draggable"><div className="slick-track" style={{ opacity: 1, width: 2700 }}><div className="slick-slide slick-current slick-active" data-slick-index={0} aria-hidden="false" style={{ width: 1350, position: 'relative', left: 0, top: 0, zIndex: 999, opacity: 1 }}><div><div className="hm1_hero hm1 hm_bg" style={{ width: '100%', display: 'inline-block' }}>
-          <div className="container">
+        <section className="hm1_hero_slider">
+        <div className="container py-5 mb-5">
             <div className="row">
               <div className="col-12">
                 <div className="hm1_content">
@@ -34,28 +46,11 @@ const HomePage = () => {
                   </div>
                   <h3>Donate blood,save life !</h3>
                   <h1>Donate Blood And Inspires Others.</h1>
-                  <a href="donate.html" className="explore_now red_btn" tabIndex={0}>Explore Now</a>
+                  <Link href="/donor-list" className="explore_now red_btn" tabIndex={0}>Explore Now</Link>
                 </div>
               </div>
             </div>
           </div>
-        </div></div></div><div className="slick-slide" data-slick-index={1} aria-hidden="true" style={{ width: 1350, position: 'relative', left: '-1350px', top: 0, zIndex: 998, opacity: 0, transition: 'opacity 800ms' }} tabIndex={-1}><div><div className="hm1_hero hm13  hm_bg" style={{ width: '100%', display: 'inline-block' }}>
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="hm1_content">
-                  <div className="video_play d-flex gap-2 align-items-center">
-                    <a href="https://youtu.be/K87aFjB7Ff0?si=kpgANQNewn8DSOtq" data-fancybox className="red_bg d-inline-flex align-items-center justify-content-center" tabIndex={-1}><i className="fa-solid fa-play" /></a>
-                    <h6>Intro Video</h6>
-                  </div>
-                  <h3>Donate blood,save life !</h3>
-                  <h1>Donate Blood And Inspires Others.</h1>
-                  <a href="#" className="explore_now red_btn" tabIndex={-1}>Explore Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div></div></div></div></div><button className="next-arrow slick-arrow" style={{}}><i className="fa-solid fa-chevron-right" /></button>
         </section>
 
 
@@ -71,7 +66,7 @@ const HomePage = () => {
                     </p>
                   </div>
                   <div className="register_icon black_hover">
-                    <a href="register.html"><i className="fa-solid fa-arrow-right-to-bracket" /></a>
+                    <Link href="/register"><i className="fa-solid fa-arrow-right-to-bracket" /></Link>
                   </div>
                 </div>
               </div>
@@ -94,10 +89,10 @@ const HomePage = () => {
                 <div className="register_donate_item">
                   <div className="donate_item_top">
                     <div className="donate_img">
-                      <img src="assets/images/r1.jpg" alt='' />
+                      <Image  height={500} width={500}  src={s1} alt='' />
                     </div>
                     <div className="donate_content text-center">
-                      <span><img src="assets/images/icon/d1.png" alt='' /></span>
+                      <span><Image height={50} width={50}   src={d1} alt='' /></span>
                       <a href="#">
                         <h5>Become a donate</h5>
                       </a>
@@ -112,10 +107,10 @@ const HomePage = () => {
                 <div className="register_donate_item">
                   <div className="donate_item_top">
                     <div className="donate_img">
-                      <img src="assets/images/r2.jpg" alt='' />
+                      <Image  height={500} width={500}  src={s2} alt='' />
                     </div>
                     <div className="donate_content text-center">
-                      <span><img src="assets/images/icon/d2.png" alt='' /></span>
+                      <span><Image  height={60} width={60}    src={d2} alt='' /></span>
                       <a href="#">
                         <h5>Why give blood?</h5>
                       </a>
@@ -127,13 +122,13 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                <div className="register_donate_item">
+                <div className="register_donate_item position-relative">
                   <div className="donate_item_top">
                     <div className="donate_img">
-                      <img src="assets/images/r3.jpg" alt='' />
+                      <Image height={500} width={500} src={s3} alt='' />
                     </div>
                     <div className="donate_content text-center">
-                      <span><img src="assets/images/icon/d3.png" alt='' /></span>
+                      <span><Image height={60} width={60}  src={d3} alt='' /></span>
                       <a href="#">
                         <h5>How Denations Help?</h5>
                       </a>
@@ -155,8 +150,8 @@ const HomePage = () => {
               <div className="row align-items-center g-lg-5 g-xl-5 g-xxl-5">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-12 mb-4 mb-xl-0 mb-lg-0 mb-md-0">
                   <div className="help_wrap position-relative">
-                    <img src="assets/images/help1.png" alt='' />
-                    <img src="assets/images/help2.png" alt='' className="help_over" />
+                    <Image src={help1 as any} alt='' />
+                    <Image src={help2 as any} alt='' className="help_over" />
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-12">
@@ -173,11 +168,7 @@ const HomePage = () => {
                         <li><i className="fa-solid fa-angles-right" /> Help People</li>
                         <li><i className="fa-solid fa-angles-right" /> Hugine Tools</li>
                       </ul>
-                      <ul>
-                        <li><i className="fa-solid fa-angles-right" /> 24h Service</li>
-                        <li><i className="fa-solid fa-angles-right" /> Health Check</li>
-                        <li><i className="fa-solid fa-angles-right" /> Blood Bank</li>
-                      </ul>
+                 
                     </div>
                     <a href="about.html" className="explore_now red_btn">Explore Now</a>
                   </div>
@@ -186,32 +177,32 @@ const HomePage = () => {
             </div>
           </section>
           <section className="hm1_counter">
-            <div className="container">
+            <div className="container position-relative">
               <div className="row">
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
                   <div className="counter_item text-center">
-                    <img src="assets/images/icon/c1.png" alt='' />
+                    <Image width={500} height={500} src="/assets/images/icon/c1.png" alt='' />
                     <h2><span className="count">25</span></h2>
                     <p>Year experience</p>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
                   <div className="counter_item text-center">
-                    <img src="assets/images/icon/c2.png" alt='' />
+                    <Image width={500} height={500} src="/assets/images/icon/c2.png" alt='' />
                     <h2><span className="count">3225</span></h2>
                     <p>happy donors</p>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
                   <div className="counter_item text-center">
-                    <img src="assets/images/icon/c3.png" alt='' />
+                    <Image width={500} height={500} src="/assets/images/icon/c3.png" alt='' />
                     <h2><span className="count">90</span></h2>
                     <p>total awards</p>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                   <div className="counter_item text-center">
-                    <img src="assets/images/icon/c4.png" alt='' />
+                    <Image width={500} height={500} src="/assets/images/icon/c4.png" alt='' />
                     <h2><span className="count">3168</span></h2>
                     <p>happy recipient</p>
                   </div>
@@ -233,7 +224,7 @@ const HomePage = () => {
                 <div className="col-xl-6 col-lg-6 col-md-6  col-12 mb-5 order_1">
                   <div className="service_item">
                     <div className="img">
-                      <img src="assets/images/s1.jpg" alt='' />
+                      <Image width={500} height={500} src={"/assets/images/s1.jpg" }alt='' />
                     </div>
                   </div>
                 </div>
@@ -264,14 +255,14 @@ const HomePage = () => {
                 <div className="col-xl-6 col-lg-6 col-md-6  col-12 mb-5 order_4">
                   <div className="service_item">
                     <div className="img">
-                      <img src="assets/images/s2.jpg" alt='' />
+                      <Image width={500} height={500} src={"/assets/images/s2.jpg"} alt='' />
                     </div>
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6  col-12 mb-5 order_5">
                   <div className="service_item">
                     <div className="img">
-                      <img src="assets/images/s3.jpg" alt='' />
+                      <Image width={500} height={500} src="/assets/images/s3.jpg" alt='' />
                     </div>
                   </div>
                 </div>
@@ -290,236 +281,8 @@ const HomePage = () => {
               </div>
             </div>
           </section>
-          <section className="hm1_counter call_now">
-            <div className="container">
-              <div className="row">
-                <div className="col-12 ">
-                  <div className="call_content text-center">
-                    <span className="call_over"><i className="fa-solid fa-phone" /></span>
-                    <p>START DONATING</p>
-                    <a href="tell:3335559090">
-                      <h2>Call Now: <span>333 555 9090</span></h2>
-                    </a>
-                    <ul className="d-flex gap-4 justify-content-center flex-wrap">
-                      <li>
-                        <span><i className="fa-solid fa-location-dot" /></span>
-                        <span>New York - 1075 Firs Avenue</span>
-                      </li>
-                      <li>
-                        <span><i className="fa-solid fa-envelope" /></span>
-                        <a href="mailto:company@domin.com">Donate@gmail.com</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className="campaign gray ptb-115">
-            <div className="container">
-              <div className="row">
-                <div className="col-12 mb-5">
-                  <div className="common_title text-center">
-                    <p>Donate Now</p>
-                    <h2>Popular Campaigns</h2>
-                  </div>
-                </div>
-                <div className="campaign_slider slider-spacing custom_dots slick-initialized slick-slider slick-dotted"><div className="slick-list draggable"><div className="slick-track" style={{ opacity: 1, width: 4680, transform: 'translate3d(-1170px, 0px, 0px)' }}><div className="slick-slide slick-cloned" data-slick-index={-2} aria-hidden="true" style={{ width: 561 }} tabIndex={-1}><div><div className="campaign_slier_item" style={{ width: '100%', display: 'inline-block' }}>
-                  <div className="row g-0 ">
-                    <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 col-5">
-                      <div className="campaign_img">
-                        <img src="assets/images/c2.png" alt='' />
-                        <a href="campaign-details.html" tabIndex={-1}>Read More</a>
-                      </div>
-                    </div>
-                    <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                      <div className="campaign_content">
-                        <div className="meta_date">
-                          <span><i className="fa-regular fa-calendar-days" /> 13 February, 2022</span>
-                        </div>
-                        <a href="campaign-details.html" tabIndex={-1}>
-                          <h6>Blood Donation Camp</h6>
-                        </a>
-                        <p>Lorem ipsum dolor sit consectetur adipiscing elit, sed do incididunt et dolore magna aliqua.</p>
-                        <div className="meta_time d-flex gap-4">
-                          <span><i className="fa-regular fa-clock" /> 10.00 - 4.00</span>
-                          <span><i className="fa-solid fa-location-dot" />Broklyn 40, USA</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div></div></div><div className="slick-slide slick-cloned" data-slick-index={-1} aria-hidden="true" style={{ width: 561 }} tabIndex={-1}><div><div className="campaign_slier_item" style={{ width: '100%', display: 'inline-block' }}>
-                  <div className="row g-0">
-                    <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 col-5">
-                      <div className="campaign_img">
-                        <img src="assets/images/c1.png" alt='' />
-                        <a href="campaign-details.html" tabIndex={-1}>Read More</a>
-                      </div>
-                    </div>
-                    <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                      <div className="campaign_content">
-                        <div className="meta_date">
-                          <span><i className="fa-regular fa-calendar-days" /> 13 February, 2022</span>
-                        </div>
-                        <a href="campaign-details.html" tabIndex={-1}>
-                          <h6>Free Group Checking</h6>
-                        </a>
-                        <p>Lorem ipsum dolor sit consectetur adipiscing elit, sed do incididunt et dolore magna aliqua.</p>
-                        <div className="meta_time d-flex gap-4">
-                          <span><i className="fa-regular fa-clock" /> 10.00 - 4.00</span>
-                          <span><i className="fa-solid fa-location-dot" />Broklyn 40, USA</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div></div></div><div className="slick-slide slick-current slick-active" data-slick-index={0} aria-hidden="false" style={{ width: 561 }} role="tabpanel" id="slick-slide00"><div><div className="campaign_slier_item" style={{ width: '100%', display: 'inline-block' }}>
-                  <div className="row g-0">
-                    <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 col-5">
-                      <div className="campaign_img">
-                        <img src="assets/images/c1.png" alt='' />
-                        <a href="campaign-details.html" tabIndex={0}>Read More</a>
-                      </div>
-                    </div>
-                    <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                      <div className="campaign_content">
-                        <div className="meta_date">
-                          <span><i className="fa-regular fa-calendar-days" /> 13 February, 2022</span>
-                        </div>
-                        <a href="campaign-details.html" tabIndex={0}>
-                          <h6>Free Group Checking</h6>
-                        </a>
-                        <p>Lorem ipsum dolor sit consectetur adipiscing elit, sed do incididunt et dolore magna aliqua.</p>
-                        <div className="meta_time d-flex gap-4">
-                          <span><i className="fa-regular fa-clock" /> 10.00 - 4.00</span>
-                          <span><i className="fa-solid fa-location-dot" />Broklyn 40, USA</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div></div></div><div className="slick-slide slick-active" data-slick-index={1} aria-hidden="false" style={{ width: 561 }} role="tabpanel" id="slick-slide01"><div><div className="campaign_slier_item" style={{ width: '100%', display: 'inline-block' }}>
-                  <div className="row g-0 ">
-                    <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 col-5">
-                      <div className="campaign_img">
-                        <img src="assets/images/c2.png" alt='' />
-                        <a href="campaign-details.html" tabIndex={0}>Read More</a>
-                      </div>
-                    </div>
-                    <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                      <div className="campaign_content">
-                        <div className="meta_date">
-                          <span><i className="fa-regular fa-calendar-days" /> 13 February, 2022</span>
-                        </div>
-                        <a href="campaign-details.html" tabIndex={0}>
-                          <h6>Blood Donation Camp</h6>
-                        </a>
-                        <p>Lorem ipsum dolor sit consectetur adipiscing elit, sed do incididunt et dolore magna aliqua.</p>
-                        <div className="meta_time d-flex gap-4">
-                          <span><i className="fa-regular fa-clock" /> 10.00 - 4.00</span>
-                          <span><i className="fa-solid fa-location-dot" />Broklyn 40, USA</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div></div></div><div className="slick-slide" data-slick-index={2} aria-hidden="true" style={{ width: 561 }} tabIndex={-1} role="tabpanel" id="slick-slide02"><div><div className="campaign_slier_item" style={{ width: '100%', display: 'inline-block' }}>
-                  <div className="row g-0">
-                    <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 col-5">
-                      <div className="campaign_img">
-                        <img src="assets/images/c1.png" alt='' />
-                        <a href="campaign-details.html" tabIndex={-1}>Read More</a>
-                      </div>
-                    </div>
-                    <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                      <div className="campaign_content">
-                        <div className="meta_date">
-                          <span><i className="fa-regular fa-calendar-days" /> 13 February, 2022</span>
-                        </div>
-                        <a href="campaign-details.html" tabIndex={-1}>
-                          <h6>Free Group Checking</h6>
-                        </a>
-                        <p>Lorem ipsum dolor sit consectetur adipiscing elit, sed do incididunt et dolore magna aliqua.</p>
-                        <div className="meta_time d-flex gap-4">
-                          <span><i className="fa-regular fa-clock" /> 10.00 - 4.00</span>
-                          <span><i className="fa-solid fa-location-dot" />Broklyn 40, USA</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div></div></div><div className="slick-slide slick-cloned" data-slick-index={3} aria-hidden="true" style={{ width: 561 }} tabIndex={-1}><div><div className="campaign_slier_item" style={{ width: '100%', display: 'inline-block' }}>
-                  <div className="row g-0">
-                    <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 col-5">
-                      <div className="campaign_img">
-                        <img src="assets/images/c1.png" alt='' />
-                        <a href="campaign-details.html" tabIndex={-1}>Read More</a>
-                      </div>
-                    </div>
-                    <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                      <div className="campaign_content">
-                        <div className="meta_date">
-                          <span><i className="fa-regular fa-calendar-days" /> 13 February, 2022</span>
-                        </div>
-                        <a href="campaign-details.html" tabIndex={-1}>
-                          <h6>Free Group Checking</h6>
-                        </a>
-                        <p>Lorem ipsum dolor sit consectetur adipiscing elit, sed do incididunt et dolore magna aliqua.</p>
-                        <div className="meta_time d-flex gap-4">
-                          <span><i className="fa-regular fa-clock" /> 10.00 - 4.00</span>
-                          <span><i className="fa-solid fa-location-dot" />Broklyn 40, USA</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div></div></div><div className="slick-slide slick-cloned" data-slick-index={4} aria-hidden="true" style={{ width: 561 }} tabIndex={-1}><div><div className="campaign_slier_item" style={{ width: '100%', display: 'inline-block' }}>
-                  <div className="row g-0 ">
-                    <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 col-5">
-                      <div className="campaign_img">
-                        <img src="assets/images/c2.png" alt='' />
-                        <a href="campaign-details.html" tabIndex={-1}>Read More</a>
-                      </div>
-                    </div>
-                    <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                      <div className="campaign_content">
-                        <div className="meta_date">
-                          <span><i className="fa-regular fa-calendar-days" /> 13 February, 2022</span>
-                        </div>
-                        <a href="campaign-details.html" tabIndex={-1}>
-                          <h6>Blood Donation Camp</h6>
-                        </a>
-                        <p>Lorem ipsum dolor sit consectetur adipiscing elit, sed do incididunt et dolore magna aliqua.</p>
-                        <div className="meta_time d-flex gap-4">
-                          <span><i className="fa-regular fa-clock" /> 10.00 - 4.00</span>
-                          <span><i className="fa-solid fa-location-dot" />Broklyn 40, USA</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div></div></div><div className="slick-slide slick-cloned" data-slick-index={5} aria-hidden="true" style={{ width: 561 }} tabIndex={-1}><div><div className="campaign_slier_item" style={{ width: '100%', display: 'inline-block' }}>
-                  <div className="row g-0">
-                    <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 col-5">
-                      <div className="campaign_img">
-                        <img src="assets/images/c1.png" alt='' />
-                        <a href="campaign-details.html" tabIndex={-1}>Read More</a>
-                      </div>
-                    </div>
-                    <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                      <div className="campaign_content">
-                        <div className="meta_date">
-                          <span><i className="fa-regular fa-calendar-days" /> 13 February, 2022</span>
-                        </div>
-                        <a href="campaign-details.html" tabIndex={-1}>
-                          <h6>Free Group Checking</h6>
-                        </a>
-                        <p>Lorem ipsum dolor sit consectetur adipiscing elit, sed do incididunt et dolore magna aliqua.</p>
-                        <div className="meta_time d-flex gap-4">
-                          <span><i className="fa-regular fa-clock" /> 10.00 - 4.00</span>
-                          <span><i className="fa-solid fa-location-dot" />Broklyn 40, USA</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div></div></div></div></div><ul className="slick-dots" style={{}} role="tablist"><li className="slick-active" role="presentation"><span /></li><li role="presentation"><span /></li><li role="presentation"><span /></li></ul></div>
-              </div>
-            </div>
-          </section>
+        
+         
           <section className="testimonial ptb-115">
             <div className="container">
               <div className="row ">
@@ -544,7 +307,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={-1}><img src="assets/images/ts2.png" alt='' /></a>
+                      <a href="#" tabIndex={-1}><Image width={500} height={500} src="/assets/images/ts2.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Niro Markusa</h5>
@@ -566,7 +329,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={-1}><img src="assets/images/ts3.png" alt='' /></a>
+                      <a href="#" tabIndex={-1}><Image width={500} height={500} src="/assets/images/ts3.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Nicolas Mark</h5>
@@ -588,7 +351,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={-1}><img src="assets/images/ts1.png" alt='' /></a>
+                      <a href="#" tabIndex={-1}><Image width={500} height={500} src="/assets/images/ts1.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Nora Fateha</h5>
@@ -610,7 +373,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={0}><img src="assets/images/ts1.png" alt='' /></a>
+                      <a href="#" tabIndex={0}><Image width={500} height={500} src="/assets/images/ts1.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Nora Fateha</h5>
@@ -632,7 +395,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={0}><img src="assets/images/ts2.png" alt='' /></a>
+                      <a href="#" tabIndex={0}><Image width={500} height={500} src="/assets/images/ts2.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Niro Markusa</h5>
@@ -654,7 +417,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={0}><img src="assets/images/ts3.png" alt='' /></a>
+                      <a href="#" tabIndex={0}><Image width={500} height={500} src="/assets/images/ts3.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Nicolas Mark</h5>
@@ -676,7 +439,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={-1}><img src="assets/images/ts1.png" alt='' /></a>
+                      <a href="#" tabIndex={-1}><Image width={500} height={500} src="/assets/images/ts1.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Nora Fateha</h5>
@@ -698,7 +461,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={-1}><img src="assets/images/ts1.png" alt='' /></a>
+                      <a href="#" tabIndex={-1}><Image width={500} height={500} src="/assets/images/ts1.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Nora Fateha</h5>
@@ -720,7 +483,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={-1}><img src="assets/images/ts2.png" alt='' /></a>
+                      <a href="#" tabIndex={-1}><Image width={500} height={500} src="/assets/images/ts2.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Niro Markusa</h5>
@@ -742,7 +505,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={-1}><img src="assets/images/ts3.png" alt='' /></a>
+                      <a href="#" tabIndex={-1}><Image width={500} height={500} src="/assets/images/ts3.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Nicolas Mark</h5>
@@ -764,7 +527,7 @@ const HomePage = () => {
                   </div>
                   <div className="testi_owner d-flex gap-4 align-items-center">
                     <div className="testi_img img">
-                      <a href="#" tabIndex={-1}><img src="assets/images/ts1.png" alt='' /></a>
+                      <a href="#" tabIndex={-1}><Image width={500} height={500} src="/assets/images/ts1.png" alt='' /></a>
                     </div>
                     <div className="testi_name">
                       <h5>Nora Fateha</h5>
@@ -784,7 +547,7 @@ const HomePage = () => {
                     <h2>We Are Blood Donor Group</h2>
                     <div className="blood_play position-relative">
                       <a href="https://youtu.be/K87aFjB7Ff0?si=kpgANQNewn8DSOtq" data-fancybox className="red_bg d-inline-flex align-items-center justify-content-center"><i className="fa-solid fa-play" /></a>
-                      <img src="assets/images/b1.png" alt='' />
+                      <Image width={500} height={500} src={b1} alt='' />
                     </div>
                   </div>
                 </div>
@@ -847,8 +610,8 @@ const HomePage = () => {
               <div className="row mb-5">
                 <div className="col-12">
                   <div className="common_title text-center">
-                    <p>Team members</p>
-                    <h2>Meet Volunteers</h2>
+                 
+                    <h2>Meet Donors</h2>
                   </div>
                 </div>
               </div>
@@ -856,7 +619,7 @@ const HomePage = () => {
                 <div className="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
                   <div className="team_details">
                     <div className="team_img">
-                      <img src="assets/images/t1.jpg" alt='' className="w-100" />
+                      <Image width={500} height={500} src="/assets/images/t1.jpg" alt='' className="w-100" />
                       <ul className="d-flex">
                         <li><a href="#"><i className="fa-brands fa-facebook-f" /></a></li>
                         <li><a href="#"><i className="fa-brands fa-twitter" /></a></li>
@@ -875,7 +638,7 @@ const HomePage = () => {
                 <div className="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
                   <div className="team_details">
                     <div className="team_img ">
-                      <img src="assets/images/t2.jpg" alt='' className="w-100" />
+                      <Image width={500} height={500} src="/assets/images/t2.jpg" alt='' className="w-100" />
                       <ul className="d-flex">
                         <li><a href="#"><i className="fa-brands fa-facebook-f" /></a></li>
                         <li><a href="#"><i className="fa-brands fa-twitter" /></a></li>
@@ -894,7 +657,7 @@ const HomePage = () => {
                 <div className="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
                   <div className="team_details">
                     <div className="team_img ">
-                      <img src="assets/images/t3.jpg" alt='' className="w-100" />
+                      <Image width={500} height={500} src="/assets/images/t3.jpg" alt='' className="w-100" />
                       <ul className="d-flex">
                         <li><a href="#"><i className="fa-brands fa-facebook-f" /></a></li>
                         <li><a href="#"><i className="fa-brands fa-twitter" /></a></li>
@@ -913,86 +676,13 @@ const HomePage = () => {
               </div>
             </div>
           </section>
-          <section className="news gray ptb-115">
-            <div className="container">
-              <div className="row mb-5">
-                <div className="col-12">
-                  <div className="common_title text-center">
-                    <p>our news</p>
-                    <h2>Checkout News &amp; Updates</h2>
-                  </div>
-                </div>
-              </div>
-              <div className="row justify-content-center">
-                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-4 mb-xl-0 mb-lg-0">
-                  <div className="news_content_item">
-                    <div className="news_img ">
-                      <img src="assets/images/n1.jpg" alt='' />
-                      <a href="blog-details.html"><i className="fa-solid fa-plus" /></a>
-                    </div>
-                    <div className="news_content">
-                      <div className="meta d-flex gap-4">
-                        <span><i className="fa-regular fa-clock" /> 18 Feb, 2022</span>
-                        <span><i className="fa-solid fa-comments" /> 3 Comments</span>
-                      </div>
-                      <a href="blog-details.html">
-                        <h5>Donation is hope for poor helpless children</h5>
-                      </a>
-                      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, magni eos
-                        qui ratione voluptatem</p>
-                      <a href="blog-details.html">Read More <i className="fa-solid fa-angles-right" /></a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-4 mb-xl-0 mb-lg-0">
-                  <div className="news_content_item">
-                    <div className="news_img ">
-                      <img src="assets/images/n2.jpg" alt='' />
-                      <a href="blog-details.html"><i className="fa-solid fa-plus" /></a>
-                    </div>
-                    <div className="news_content">
-                      <div className="meta d-flex gap-4">
-                        <span><i className="fa-regular fa-clock" /> 18 Feb, 2022</span>
-                        <span><i className="fa-solid fa-comments" /> 3 Comments</span>
-                      </div>
-                      <a href="blog-details.html">
-                        <h5>Donation is hope for poor helpless children</h5>
-                      </a>
-                      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, magni eos
-                        qui ratione voluptatem</p>
-                      <a href="blog-details.html">Read More <i className="fa-solid fa-angles-right" /></a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                  <div className="news_content_item">
-                    <div className="news_img ">
-                      <img src="assets/images/n3.jpg" alt='' />
-                      <a href="blog-details.html"><i className="fa-solid fa-plus" /></a>
-                    </div>
-                    <div className="news_content">
-                      <div className="meta d-flex gap-4">
-                        <span><i className="fa-regular fa-clock" /> 18 Feb, 2022</span>
-                        <span><i className="fa-solid fa-comments" /> 3 Comments</span>
-                      </div>
-                      <a href="blog-details.html">
-                        <h5>Donation is hope for poor helpless children</h5>
-                      </a>
-                      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, magni eos
-                        qui ratione voluptatem</p>
-                      <a href="blog-details.html">Read More <i className="fa-solid fa-angles-right" /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+        
           <section className="change red_bg">
             <div className="container">
               <div className="row align-items-center">
                 <div className="col-xl-9 col-lg-9  col-12">
                   <div className="change_content">
-                    <h2>Let's change the world, Join us now!</h2>
+                    <h2>Let`&rsquo;`s change the world, Join us now!</h2>
                     <p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain,
                       but occasionally
                       circumstances occur in which toil and pain can procure reat pleasure.</p>
@@ -1008,7 +698,7 @@ const HomePage = () => {
           <div className="offcanvas offcanvas-start" id="offcanvas-mobile">
             <div className="offcanvas-body">
               <div className="mobile-menu">
-                <a href="index.html" className="logo py-3"><img src="assets/images/icon/red-logo.png" alt="logo" className="img-fluid" /></a>
+                <a href="index.html" className="logo py-3"><Image width={500} height={500} src="/assets/images/icon/red-logo.png" alt="logo" className="img-fluid" /></a>
                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas" />
                 <ul className="accordion accordion-flush mobile_dropdown" id="accordionFlushExample">
                   <li className="accordion-item">
@@ -1088,12 +778,12 @@ const HomePage = () => {
                   2156-2145</p>
               </div>
               <div className="offcanvus-gallery d-flex align-items-center flex-wrap">
-                <a className="img" href="#"><img src="assets/images/r1.jpg" alt="not found" /></a>
-                <a className="img" href="#"><img src="assets/images/r2.jpg" alt="not found" /></a>
-                <a className="img" href="#"><img src="assets/images/r1.jpg" alt="not found" /></a>
-                <a className="img" href="#"><img src="assets/images/r3.jpg" alt="not found" /></a>
-                <a className="img" href="#"><img src="assets/images/r1.jpg" alt="not found" /></a>
-                <a className="img" href="#"><img src="assets/images/r2.jpg" alt="not found" /></a>
+                <a className="img" href="#"><Image width={500} height={500} src="/assets/images/r1.jpg" alt="not found" /></a>
+                <a className="img" href="#"><Image width={500} height={500} src="/assets/images/r2.jpg" alt="not found" /></a>
+                <a className="img" href="#"><Image width={500} height={500} src="/assets/images/r1.jpg" alt="not found" /></a>
+                <a className="img" href="#"><Image width={500} height={500} src="/assets/images/r3.jpg" alt="not found" /></a>
+                <a className="img" href="#"><Image width={500} height={500} src="/assets/images/r1.jpg" alt="not found" /></a>
+                <a className="img" href="#"><Image width={500} height={500} src="/assets/images/r2.jpg" alt="not found" /></a>
               </div>
               <div className="offcanvus-newsletter">
                 <h4 className="mb-4 text-center">Newsletter</h4>
@@ -1108,6 +798,7 @@ const HomePage = () => {
         </div>
 
 
+        </section>
 
 
 

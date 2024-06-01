@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 
 const Footer = () => {
@@ -49,7 +50,11 @@ const Footer = () => {
                   <div className="row align-items-center">
                     <div className="col-4">
                       <div className="fblog_img img">
-                        <a href="blog-details.html"><img src="assets/images/f1.jpg" alt='' /></a>
+                        <a href="blog-details.html"><Image
+                        
+                        width={400}
+                        height={400}
+                        src="assets/images/f1.jpg" alt='' /></a>
                       </div>
                     </div>
                     <div className="col-8">
@@ -64,7 +69,10 @@ const Footer = () => {
                   <div className="row align-items-center">
                     <div className="col-4">
                       <div className="fblog_img img">
-                        <a href="blog-details.html"><img src="assets/images/f2.jpg" alt='' /></a>
+                        <a href="blog-details.html"><Image
+                        width={400}
+                        height={400}
+                        src="assets/images/f2.jpg" alt='' /></a>
                       </div>
                     </div>
                     <div className="col-8">

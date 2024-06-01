@@ -3055,7 +3055,7 @@ footer .footer_bottom p {
     box-shadow: 0 0 0 0 rgba(1, 93, 199, 0);
   }
 }
-
+/* 
 .hm1_hero_slider .prev-arrow,
 .hm1_hero_slider .next-arrow {
   position: absolute;
@@ -3143,7 +3143,7 @@ footer .footer_bottom p {
 .hm1_hero_slider .slick-slide.slick-active .hm1_content .explore_now {
   -webkit-animation: 3s theme_fadeInUp;
   animation: 3s theme_fadeInUp;
-}
+} */
 
 @keyframes theme_fadeInUp {
   0% {
@@ -3395,7 +3395,7 @@ footer .footer_bottom p {
 }
 
 .hm1_counter {
-  /* background: url("../images/count.jpg") no-repeat; */
+  background: url("../images/count.jpg") no-repeat;
   background-size: cover;
   position: relative;
   background-position: center;
@@ -3410,7 +3410,7 @@ footer .footer_bottom p {
   position: absolute;
   width: 100%;
   height: 100%;
-  /* background: url("../images/count1.png") no-repeat; */
+  background: url("../images/count1.png") no-repeat;
   background-size: cover;
   top: 0;
   left: 0;
@@ -4274,7 +4274,7 @@ footer .footer_bottom p {
 .hm2_content a {
   margin: 5px 5px;
 }
-
+/* 
 .hm1_hero_slider .slick-slide.slick-active .hm2_content h4 {
   -webkit-animation: 1.7s theme_fadeInUp;
   animation: 1.7s theme_fadeInUp;
@@ -4293,7 +4293,7 @@ footer .footer_bottom p {
 .hm2_hero_slider .prev-arrow,
 .hm2_hero_slider .next-arrow {
   color: var(--white);
-}
+} */
 
 .register_donate_item2 h2 {
   font-weight: 700;

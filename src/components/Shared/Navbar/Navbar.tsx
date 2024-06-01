@@ -55,7 +55,7 @@ const Navbar = () => {
  <div className="header_bottom header_bottom2">
   <div className="container">
     <div className="row align-items-center position-relative">
-      <div className="col-xl-3 col-lg-2 col-md-4 col-6">
+      <div className="col-xl-3 col-lg-3 col-md-4 col-6">
         <div className="header_logo">
           <Link href="/" >
          <h6 className='red_color'>
@@ -65,7 +65,7 @@ const Navbar = () => {
             </Link>
         </div>
       </div>
-      <div className="col-xl-6 col-lg-8 d-none d-xxl-block d-xl-block">
+      <div className="col-xl-6 col-lg- d-none d-xxl-block d-xl-block">
         <ul className="main_menu">
         
           <li><Link href="/">Home</Link></li>
@@ -78,15 +78,7 @@ const Navbar = () => {
       </div>
       <div className="col-xl-3 col-lg-2  d-none d-xxl-block d-xl-block">
         <div className="header_search_menu d-flex">
-          <div className="dropdown dropdown_search">
-            <button className="search-btn " data-bs-toggle="dropdown" aria-expanded="true"><i className="fa-solid fa-magnifying-glass" /></button>
-            <div className="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
-              <form className="search-form d-flex align-items-center gap-2">
-                <input type="text" placeholder="Search..." className="theme-input bg-transparent" />
-                <button type="submit" className="submit-btn">Go</button>
-              </form>
-            </div>
-          </div>
+         
           <div>
             <Link href="/login" className="red_btn get_code">Login</Link>
           </div>

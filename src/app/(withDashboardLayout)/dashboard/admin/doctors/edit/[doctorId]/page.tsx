@@ -123,14 +123,14 @@ const DoctorUpdatePage = ({ params }: TParams) => {
                 sx={{ mb: 2 }}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            {/* <Grid item xs={12} sm={12} md={4}>
               <PHSelectField
                 items={Gender}
                 name="gender"
                 label="Gender"
                 sx={{ mb: 2 }}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} sm={12} md={4}>
               <PHInput
                 name="apointmentFee"
