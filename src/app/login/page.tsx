@@ -24,28 +24,28 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AGInput from "@/components/Forms/AGInput";
 import { loginDonor } from "@/services/actions/loginDonor";
+import { useUserLoginMutation } from "@/redux/api/authApi";
 
 
 const LoginPage = () => {
+
+  const[loginFn,{}]=useUserLoginMutation();
   const router = useRouter();
-  const handleRegister = async (values: FieldValues) => {
+  const handleLogin = async (values: FieldValues) => {
     const data = values;
 
     try {
-      const res = await loginDonor(data);
+      const res = await loginFn(data);
       console.log(res,'loginres');
 
 
       if (res?.data?.id) {
-        toast.success(res?.message);
-        // const result = await userLogin({
-        //   password: values.password,
-        //   email: values.patient.email,
-        // });
-        // if (result?.data?.accessToken) {
-        //   // storeUserInfo({ accessToken: result?.data?.accessToken });
-        //   // router.push("/dashboard");
-        // }
+        toast.success(res?.data?.message);
+       
+        if (res?.data?.accessToken) {
+          storeUserInfo({ accessToken: res?.data?.accessToken });
+          router.push("/profile");
+        }
       }
     } catch (err: any) {
       console.error(err.message);
@@ -82,7 +82,7 @@ const LoginPage = () => {
             <div className="col-xl-8">
               <div className="km__form__box">
               <PHForm
-              onSubmit={handleRegister}
+              onSubmit={handleLogin}
               resolver={zodResolver(validationSchema)}
               defaultValues={defaultValues}  >
    

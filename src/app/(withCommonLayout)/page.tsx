@@ -79,7 +79,7 @@ const HomePage = () => {
                     </p>
                   </div>
                   <div className="register_icon red_hover">
-                    <a href="donate.html"><i className="fa-solid fa-arrow-right-to-bracket" /></a>
+                    <Link href="/register"><i className="fa-solid fa-arrow-right-to-bracket" /></Link>
                   </div>
                 </div>
               </div>
@@ -100,7 +100,7 @@ const HomePage = () => {
                         born and I will give</p>
                     </div>
                   </div>
-                  <a href="blog-details.html" className="d-block black_bg text-center">Read More</a>
+                  <Link href="/about" className="d-block black_bg text-center">Read More</Link>
                 </div>
               </div>
               <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
@@ -118,7 +118,8 @@ const HomePage = () => {
                         born and I will give</p>
                     </div>
                   </div>
-                  <a href="blog-details.html" className="d-block black_bg text-center">Read More</a>
+                                   <Link href="/about" className="d-block black_bg text-center">Read More</Link>
+
                 </div>
               </div>
               <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -136,7 +137,8 @@ const HomePage = () => {
                         born and I will give</p>
                     </div>
                   </div>
-                  <a href="blog-details.html" className="d-block black_bg text-center">Read More</a>
+                                   <Link href="/about" className="d-block black_bg text-center">Read More</Link>
+
                 </div>
               </div>
             </div>
@@ -170,7 +172,7 @@ const HomePage = () => {
                       </ul>
                  
                     </div>
-                    <a href="about.html" className="explore_now red_btn">Explore Now</a>
+                    <Link href="/donor-list" className="explore_now red_btn">Explore Now</Link>
                   </div>
                 </div>
               </div>
@@ -237,7 +239,7 @@ const HomePage = () => {
                     <p>I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur
                       adipiscing elit. Ut elit
                       tellus, luctus nec ullamcorpe matti pulvinar dapibus leo.</p>
-                    <a href="service-details.html" className="red_btn service_btn">Read More</a>
+                 <Link href="/about" className="red_btn service_btn">Read More</Link>
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6  col-12 mb-5 order_3">
@@ -249,7 +251,7 @@ const HomePage = () => {
                     <p>I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur
                       adipiscing elit. Ut elit
                       tellus, luctus nec ullamcorpe matti pulvinar dapibus leo.</p>
-                    <a href="service-details.html" className="red_btn service_btn">Read More</a>
+                 <Link href="/about" className="red_btn service_btn">Read More</Link>
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6  col-12 mb-5 order_4">
@@ -275,7 +277,7 @@ const HomePage = () => {
                     <p>I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur
                       adipiscing elit. Ut elit
                       tellus, luctus nec ullamcorpe matti pulvinar dapibus leo.</p>
-                    <a href="service-details.html" className="red_btn service_btn">Read More</a>
+                 <Link href="/about" className="red_btn service_btn">Read More</Link>
                   </div>
                 </div>
               </div>
@@ -689,7 +691,7 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3  col-12 text-xl-end text-lg-end text-center">
-                  <a href="contact.html">Contact Us</a>
+                  <Link href="/contact">Contact Us</Link>
                 </div>
               </div>
             </div>
@@ -773,7 +775,7 @@ const HomePage = () => {
             </div>
             <div className="offcanvas-body">
               <div className="content-top mb-100">
-                <a href="index.html">Blad Ai</a>
+                <a href="index.html">AG. Blood Center</a>
                 <p>Distrak Street 2SK Line, Germanygalore@inside-support.com (+125)
                   2156-2145</p>
               </div>
@@ -789,7 +791,7 @@ const HomePage = () => {
                 <h4 className="mb-4 text-center">Newsletter</h4>
                 <form action="#">
                   <input type="email" placeholder="Enter your e-mail" className="theme-input mb-3" />
-                  <button type="submit" className="black_btn w-100 border-0 p-3"><span>SUBSCRIBE
+                  <button type="button" className="black_btn w-100 border-0 p-3"><span>SUBSCRIBE
                     NOW</span></button>
                 </form>
                 vcxcx </div>

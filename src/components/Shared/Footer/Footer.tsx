@@ -93,7 +93,7 @@ const Footer = () => {
               <h6>Subscribe us for more update &amp; news !!</h6>
               <form action="#">
                 <input type="email" placeholder="Enter Your Email" />
-                <button className="red_btn" type="submit">Subscribe</button>
+                <button className="red_btn" type="button">Subscribe</button>
               </form>
             </div>
           </div>
@@ -121,7 +121,7 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col-12 text-center">
-            <p>Copyright © 2020 Blad Ai. All rights reserved</p>
+            <p>Copyright © {(new Date()).getFullYear()} AG. Blood Center All rights reserved</p>
           </div>
         </div>
       </div>

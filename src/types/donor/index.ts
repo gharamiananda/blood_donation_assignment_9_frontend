@@ -24,4 +24,35 @@ export const BloodGroup: TBloodGroup[] = [
    , 'O_NEGETIVE'
   
   ];
+
+
+  export type TDonor= {
+    _id: string,
+    id:string,
+    name: {
+  firstName: string,
+  middleName:string,
+  lastName:string
+        
+    },
+    gender: TGender,
+    dateOfBirth: string,
+    email: string,
+    contactNo: string,
+    bloogGroup: TBloodGroup,
+    presentAddress: string,
+    permanentAddress: string,
+    profileImg: string,
+    isDeleted: boolean,
+    fullName: string,
+    username: string,
+age:string
+
+  }
   
+
+ export type TDonorRes= {
+  success: boolean,
+  message: string,
+  data: TDonor
+}

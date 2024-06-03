@@ -3,7 +3,7 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface IItem {
-  value: string;
+  value: any;
   label: string;
 }
 
@@ -16,6 +16,7 @@ interface ITextField {
   fullWidth?: boolean;
   style?: Record<string,string>;
   items: IItem[];
+  disabled?:boolean
 }
 
 const AgSelectField = ({
@@ -26,6 +27,7 @@ const AgSelectField = ({
   required,
   fullWidth = true,
   style,
+  disabled
 }: ITextField) => {
   const { control, formState } = useFormContext();
   const isError = formState.errors[name] !== undefined;
@@ -49,6 +51,7 @@ style={{
 
 // select={select}
 // label={label}
+disabled={disabled}
 required={required}
 className="w-100"  name="bloogGroup">
 {items.map((item) => (

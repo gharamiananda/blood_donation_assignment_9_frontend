@@ -10,10 +10,10 @@ const AboutPage = () => {
   <div className="container">
     <div className="row justify-content-center">
       <div className="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-12 text-center">
-        <h2>Contact Us</h2>
+        <h2>About Us</h2>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li className="active">Contact Us</li>
+          <li className="active">About Us</li>
         </ul>
       </div>
     </div>
@@ -33,7 +33,7 @@ const AboutPage = () => {
             pain. These cases are perfectly simple and easy to distinguish.
             In a free hour, when untrammelled and when nothing prevents
           </p>
-          +<Link href="/donor-list" className="primary__btn">Explore Now</Link>\
+          <Link href="/donor-list" className="primary__btn">Explore Now</Link>
         </div>
       </div>
       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">

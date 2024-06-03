@@ -40,6 +40,8 @@ const createUserNameValidationSchema = z.object({
  const validationSchema = z.object({
   password: z.string().max(20),
   username: z.string().max(20),
+  age: z.string().max(20),
+
  
   name: createUserNameValidationSchema,
   gender: z.enum([...Gender] as [string, ...string[]]),
@@ -78,7 +80,7 @@ const createUserNameValidationSchema = z.object({
     { value: "no", label: "No" },
   ];
   const handleRegister = async (values: FieldValues) => {
-    const data = modifyPayload(values);
+    const data = modifyPayload({...values,age:Number(values.age)});
 
     try {
       const res :any= await registerPatient(data);
@@ -115,47 +117,55 @@ const createUserNameValidationSchema = z.object({
               resolver={zodResolver(validationSchema)}
               defaultValues={defaultValues}  >
    
-      <div className="col-xl-4 col-12 mb-4">
+      <div className="col-md-4 col-12 mb-4">
         <AGInput
       label="firstName" required
         name="name.firstName" className="form-control" placeholder="Your firstName"
         />
       </div>
 
-      <div className="col-xl-4 col-12 mb-4">
+      <div className="col-md-4 col-12 mb-4">
         <AGInput
       label="middleName" required
         name="name.middleName" className="form-control" placeholder="Your middleName"
         />
       </div>
-      <div className="col-xl-4 col-12 mb-4">
+      <div className="col-md-4 col-12 mb-4">
         <AGInput
       label="lastName" required
         name="name.lastName" className="form-control" placeholder="Your lastName"
         />
       </div>
-      <div className="col-xl-6 col-12 mb-4">
+      <div className="col-md-6 mb-4">
       <AGInput
       label="Username" required
       name="username" className="form-control" placeholder="Your username"
       />
     
       </div>
-      <div className="col-xl-6 col-12 mb-4">
+      <div className="col-md-6 mb-4">
+      <AGInput
+      type="number"
+      label="age" required
+      name="age" className="form-control" placeholder="Your age"
+      />
+    
+      </div>
+      <div className="col-md-6  mb-4">
       <AGInput
       label="Password" required
       name="password" className="form-control" placeholder="Your password"
       />
     
       </div>
-      <div className="col-xl-6 col-12 mb-4">
+      <div className="col-md-6  mb-4">
       <AGInput
       label="contactNo" required
       name="contactNo" className="form-control" placeholder="Your contactNo"
       />
     
       </div>
-      <div className="col-6 mb-4">
+      <div className="col-md-6 mb-4">
       <AGInput
       label="email" required
       name="email" className="form-control" placeholder="Your email"
@@ -163,7 +173,7 @@ const createUserNameValidationSchema = z.object({
     
      
       </div>
-      <div className="col-6 mb-4">
+      <div className="col-md-6 mb-4">
       <AGInput
       type="date"
       label="dateOfBirth" required
@@ -173,7 +183,7 @@ const createUserNameValidationSchema = z.object({
      
       </div>
       
-      <div className="col-6 mb-4">
+      <div className="col-md-6 mb-4">
       <AgSelectField
         label="Gender"
         name="gender"
@@ -181,7 +191,7 @@ const createUserNameValidationSchema = z.object({
         
         />
       </div>
-      <div className="col-6 mb-4">
+      <div className="col-md-6 mb-4">
         <AgSelectField
         label="Bloog Group"
         name="bloogGroup"
@@ -189,13 +199,13 @@ const createUserNameValidationSchema = z.object({
         
         />
       </div>
-      <div className="col-xl-6 col-12 mb-4">
+      <div className="col-md-6  mb-4">
       <AGInput
       label="presentAddress" required
       name="presentAddress" className="form-control" placeholder="Your presentAddress"
       />
       </div> 
-      <div className="col-xl-6 col-12 mb-4">
+      <div className="col-md-6  mb-4">
       <AGInput
       label="permanentAddress" required
       name="permanentAddress" className="form-control" placeholder="Your permanentAddress"
