@@ -2,6 +2,7 @@ import { baseApi } from './baseApi';
 import { tagTypes } from '../tag-types';
 import { IMeta } from '@/types/common';
 import { IDoctor } from '@/types/doctor';
+import { FetchArgs } from '@reduxjs/toolkit/query';
 
 export const donorApi = baseApi.injectEndpoints({
    endpoints: (build) => ({
@@ -15,15 +16,64 @@ export const donorApi = baseApi.injectEndpoints({
          invalidatesTags: [tagTypes.doctor],
       }),
 
-      getAllDonors: build.query({
-         query: (arg: Record<string, any>) => ({
-            url: '/users/donor-list',
-            method: 'GET',
-            params: arg,
-         }),
+      // getAllDonors: build.query({
+      //    query: (arg: Record<string, any>) => ({
+      //       url: '/users/donor-list',
+      //       method: 'GET',
+      //       params: arg,
+      //    }),
       
-         providesTags: [tagTypes.doctor],
-      }),
+      //    providesTags: [tagTypes.doctor],
+      // }),
+
+
+      getAllDonors: build.query({
+         query: ({queryParams}:{queryParams: Record<string,string |number|boolean| string[] >}) => {
+ 
+           const returnObject: any={
+            url: '/users/donor-list',
+           method: 'GET'
+           }
+            if(queryParams && Object.keys(queryParams).length>0){
+               const searchparams = new URLSearchParams();
+               for (const key in queryParams) {
+                  if (Object.prototype.hasOwnProperty.call(queryParams, key)) {
+                     const value = queryParams[key];
+                     
+                           if(Array.isArray(value) ){
+                              if(value.length>0){
+                                 const valueString =  JSON.stringify(value);
+                                 searchparams.append(key, valueString);
+
+                              }
+
+
+                           }else{
+
+
+                              const valueString =   String(value);
+                              if(valueString.length>0){
+
+                                 searchparams.append(key, valueString);
+
+
+                              }
+                              
+                           }
+                  }
+               }
+               returnObject['params']=searchparams
+            }
+           return returnObject;
+ 
+       
+         },
+   
+         providesTags: [tagTypes.donor],
+   
+   
+       
+       }),
 
       deleteDoctor: build.mutation({
          query: (id) => ({

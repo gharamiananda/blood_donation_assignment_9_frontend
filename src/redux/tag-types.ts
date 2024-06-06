@@ -2,6 +2,8 @@ export enum tagTypes {
    specialties = 'specialties',
    admin = 'admin',
    doctor = 'doctor',
+   donor = 'donor',
+
    patient = 'patient',
    schedule = 'schedule',
    appointment = 'appointment',
@@ -18,6 +20,8 @@ export const tagTypesList = [
    tagTypes.specialties,
    tagTypes.admin,
    tagTypes.doctor,
+   tagTypes.donor,
+
    tagTypes.patient,
    tagTypes.schedule,
    tagTypes.appointment,

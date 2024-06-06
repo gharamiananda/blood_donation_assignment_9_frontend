@@ -60,9 +60,12 @@ useEffect(()=>{
 
   const { data, isLoading } = useGetMYProfileQuery(undefined);
 
-  const[page,setPage]=useState(1)
+  const[page,setPage]=useState(1);
 
-  const {data:donorList,isFetching}=useGetAllDonorsQuery({page:page,limit:5,gender:JSON.stringify(selectedGender),bloogGroup:JSON.stringify(selectedBloodGroups),availability:availability ==='Yes' ?true:false,searchTerm:debounceText})
+
+
+  const {data:donorList,isFetching}=useGetAllDonorsQuery({queryParams:{page:page,limit:5,gender:selectedGender,bloogGroup:selectedBloodGroups,availability:availability ==='Yes' ?true:false,searchTerm:debounceText}}
+    )
 
   console.log('availability', availability)
 
