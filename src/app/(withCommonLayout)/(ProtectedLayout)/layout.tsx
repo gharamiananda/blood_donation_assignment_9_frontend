@@ -3,9 +3,9 @@ import { useGetSingleUserQuery } from '@/redux/api/userApi';
 import { isLoggedIn } from '@/services/auth.services';
 import { TDonor } from '@/types/donor';
 import { useRouter } from 'next/navigation';
-import { FC, ReactNode, useEffect, useState } from 'react';
+import {  ReactNode, useEffect, useState } from 'react';
 
-const ProtectedLayout:FC<{ children: ReactNode }> = ({ children }) => {
+const ProtectedLayout= ({ children }:{ children: ReactNode }) => {
    const router = useRouter();
   
 
@@ -20,7 +20,7 @@ if(!iseCLient || isFetching){
     return <p>Loading...</p>
 }
    if (!isLoggedIn() || !profileData?.email) {
-    return <p>ddd</p>
+      return router.push('/login');
  }
    return children;
 };

@@ -32,6 +32,7 @@ export const isLoggedIn = () => {
    if (authToken) {
       return !!authToken;
    }
+   return false
 };
 
 export const removeUser = () => {
