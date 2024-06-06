@@ -68,7 +68,7 @@ const PHForm = ({
         })
       })
     }
-  }, [prefillData?.id]);
+  }, [prefillData?.id,formConfig]);
 
   return (
     <FormProvider {...methods}>
