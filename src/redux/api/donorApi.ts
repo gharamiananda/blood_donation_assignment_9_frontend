@@ -5,9 +5,9 @@ import { IDoctor } from '@/types/doctor';
 
 export const donorApi = baseApi.injectEndpoints({
    endpoints: (build) => ({
-      createDoctor: build.mutation({
+      createDonor: build.mutation({
          query: (data) => ({
-            url: '/user/create-doctor',
+            url: '/users/create-donor',
             method: 'POST',
             contentType: 'multipart/form-data',
             data,
@@ -15,18 +15,13 @@ export const donorApi = baseApi.injectEndpoints({
          invalidatesTags: [tagTypes.doctor],
       }),
 
-      getAllDoctors: build.query({
+      getAllDonors: build.query({
          query: (arg: Record<string, any>) => ({
-            url: '/doctor',
+            url: '/users/donor-list',
             method: 'GET',
             params: arg,
          }),
-         transformResponse: (response: IDoctor[], meta: IMeta) => {
-            return {
-               doctors: response,
-               meta,
-            };
-         },
+      
          providesTags: [tagTypes.doctor],
       }),
 
@@ -38,13 +33,45 @@ export const donorApi = baseApi.injectEndpoints({
          invalidatesTags: [tagTypes.doctor],
       }),
       //get single doctor
-      getDoctor: build.query({
+      getMyRequests: build.query({
          query: (id: string | string[] | undefined) => ({
-            url: `/doctor/${id}`,
+            url: `/request/donation-request`,
             method: 'GET',
          }),
          providesTags: [tagTypes.doctor],
       }),
+      getRequestsToMe: build.query({
+         query: (id: string | string[] | undefined) => ({
+            url: `/request/donation-request-to-me`,
+            method: 'GET',
+         }),
+         providesTags: [tagTypes.doctor],
+      }),
+      // updateRequest: build.mutation({
+      //    query: (requestId: string | string[] | undefined,data:any) => ({
+      //       url: `/donation-request/${requestId}`,
+      //       method: 'POST',
+      //       contentType: 'multipart/form-data',
+      //       data,
+      //    }),
+      // }),
+
+      updateRequest: build.mutation({
+         query: (data) => {
+
+            console.log('data', data)
+            return {
+               url: `/request/donation-request/${data.id}`,
+               method: 'PUT',
+
+               data: data.body,
+            };
+         },
+         invalidatesTags: [tagTypes.doctor, tagTypes.user],
+      }),
+
+
+      
       // update a doctor
       updateDonor: build.mutation({
          query: (data) => {
@@ -52,6 +79,8 @@ export const donorApi = baseApi.injectEndpoints({
             return {
                url: `/donors/${data.id}`,
                method: 'PATCH',
+            contentType: 'multipart/form-data',
+
                data: data.body,
             };
          },
@@ -61,9 +90,11 @@ export const donorApi = baseApi.injectEndpoints({
 });
 
 export const {
-   useCreateDoctorMutation,
-   useGetAllDoctorsQuery,
+   useCreateDonorMutation,
+   useGetAllDonorsQuery,
    useDeleteDoctorMutation,
-   useGetDoctorQuery,
+   useGetMyRequestsQuery,
    useUpdateDonorMutation,
+   useGetRequestsToMeQuery,
+   useUpdateRequestMutation
 } = donorApi;

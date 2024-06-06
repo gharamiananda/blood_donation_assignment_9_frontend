@@ -12,7 +12,6 @@ const MyProfileBtn = () => {
   return (
     profileData?.email ? <>
     <li><Link href="/profile">My Profile</Link></li> 
-    <li><Link href="/my-request">My Request</Link></li> 
     
     
     </> :<></>

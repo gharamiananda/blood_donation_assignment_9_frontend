@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React from 'react';
+
+import b1 from '../../assets/images/b1.png';
+import doctor from '../../../assets/images/doctor.jpg';
+
 
 const AboutPage = () => {
   return (
@@ -38,7 +42,7 @@ const AboutPage = () => {
       </div>
       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
         <div className="km__who__imgbx img">
-          <Image width={500} height={500} src="/assets/images/about/doctor.jpg" alt="images not found" className="img-fluid" />
+          <Image width={500} height={500} src={doctor} alt="images not found" className="img-fluid" />
         </div>
       </div>
     </div>

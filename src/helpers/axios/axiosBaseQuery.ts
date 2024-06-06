@@ -24,7 +24,7 @@ export const axiosBaseQuery =
   > =>
   async ({ url, method, data, params, headers, contentType }) => {
     try {
-      const result = await axiosInstance({
+      const result:any = await axiosInstance({
         url: baseUrl + url,
         method,
         data,
@@ -33,13 +33,21 @@ export const axiosBaseQuery =
           "Content-Type": contentType || "application/json",
         },
       });
+
+      if(result?.statusCode===500){
+throw(result)
+      }
+
+      console.log('resulaxiosInstancet', result)
       return result;
     } catch (axiosError) {
+
       const err = axiosError as AxiosError;
+      console.log('erraxiosError', err)
       return {
         error: {
           status: err.response?.status,
-          data: err.response?.data || err.message,
+          data: err.response?.data || err.message ||err,
         },
       };
     }

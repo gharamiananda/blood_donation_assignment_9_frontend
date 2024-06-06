@@ -1,16 +1,5 @@
 "use client";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
-import assets from "@/assets";
-import Link from "next/link";
+
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { modifyPayload } from "@/utils/modifyPayload";
 import { registerPatient } from "@/services/actions/registerPatient";
@@ -19,17 +8,21 @@ import { useRouter } from "next/navigation";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/auth.services";
 import PHForm from "@/components/Forms/PHForm";
-import PHInput from "@/components/Forms/PHInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import PHSelectField from "@/components/Forms/PHSelectField";
 import AGInput from "@/components/Forms/AGInput";
 import AgSelectField from "@/components/Forms/AgSelectField";
 import { BloodGroup,Gender } from "@/types/donor";
+import { useState } from "react";
+import DragAndDropFileUpload from "@/utils/DrgAndDropFileUpload";
+import { useUserLoginMutation } from "@/redux/api/authApi";
+import { useCreateDonorMutation } from "@/redux/api/donorApi";
 
 
 const RegisterPage = () => {
 
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
 const createUserNameValidationSchema = z.object({
   firstName: z.string().min(1).max(20),
@@ -54,14 +47,19 @@ const createUserNameValidationSchema = z.object({
   permanentAddress: z.string(),
 });
 
+const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
+
  const defaultValues = {
-  password: "",
-  patient: {
+  password: null,
     name: "",
     email: "",
     contactNumber: "",
     address: "",
-  },
+    gender:'male',
+    bloogGroup:'A_POSITIVE',
+    dateOfBirth:''
+    
+
 };
   const router = useRouter();
   const bloodTypes = [
@@ -79,25 +77,46 @@ const createUserNameValidationSchema = z.object({
     { value: "yes", label: "Yes" },
     { value: "no", label: "No" },
   ];
+
+  const[loginFn,{isLoading:loginLoading}]=useUserLoginMutation();
+    const[registerFn,{isLoading:registerLoading}]= useCreateDonorMutation()
+
+
   const handleRegister = async (values: FieldValues) => {
-    const data = modifyPayload({...values,age:Number(values.age)});
+
+
+    const allValues:Record<string,unknown>={...values,age:Number(values.age),wantToDonateBlood}
+
+    if(selectedFile){
+      allValues['file']=selectedFile
+    }
+    const data = modifyPayload(allValues);
 
     try {
-      const res :any= await registerPatient(data);
-     
+      const res :any= await registerFn(data);
+     console.log('res?.datadsds', res?.data)
       if (res?.data?.id) {
         toast.success(res?.message);
-        const result :any= await userLogin({
-          password: values.password,
-          email: values.patient.email,
-        });
-        if (result?.data?.accessToken) {
-          storeUserInfo({ accessToken: result?.data?.accessToken });
-          // router.push("/dashboard");
-        }
+       
+        
+          const resLogin = await loginFn({email:res?.data?.email,password:values?.password});
+          console.log(res,'loginres');
+    
+    
+          if (resLogin?.data?.id) {
+            toast.success(resLogin?.data?.message);
+           
+            if (resLogin?.data?.accessToken) {
+              storeUserInfo({ accessToken: resLogin?.data?.accessToken });
+              router.push("/profile");
+            }
+          }
+       
       }
     } catch (err: any) {
-      console.error(err.message);
+      toast.success(err.message||'SOmething went wrong!');
+
+      console.error(err.message||'SOmething went wrong!');
     }
   };
 
@@ -110,6 +129,11 @@ const createUserNameValidationSchema = z.object({
         
      <div className="row">
   <div className="appointment">
+  <DragAndDropFileUpload
+  selectedFile={selectedFile}
+  setSelectedFile={setSelectedFile}
+  />
+
     <h4 className="mb-3">Register Form</h4>
 
     <PHForm
@@ -126,7 +150,7 @@ const createUserNameValidationSchema = z.object({
 
       <div className="col-md-4 col-12 mb-4">
         <AGInput
-      label="middleName" required
+      label="middleName" 
         name="name.middleName" className="form-control" placeholder="Your middleName"
         />
       </div>
@@ -153,6 +177,7 @@ const createUserNameValidationSchema = z.object({
       </div>
       <div className="col-md-6  mb-4">
       <AGInput
+      type="password"
       label="Password" required
       name="password" className="form-control" placeholder="Your password"
       />
@@ -176,7 +201,7 @@ const createUserNameValidationSchema = z.object({
       <div className="col-md-6 mb-4">
       <AGInput
       type="date"
-      label="dateOfBirth" required
+      label="dateOfBirth" 
       name="dateOfBirth" className="form-control" placeholder="Your dateOfBirth"
       />
     
@@ -186,6 +211,7 @@ const createUserNameValidationSchema = z.object({
       <div className="col-md-6 mb-4">
       <AgSelectField
         label="Gender"
+        required
         name="gender"
         items={[{label:'Male',value:'male'},{label:'Female',value:'female'},{label:'other',value:'other'}]}
         
@@ -193,6 +219,7 @@ const createUserNameValidationSchema = z.object({
       </div>
       <div className="col-md-6 mb-4">
         <AgSelectField
+        required
         label="Bloog Group"
         name="bloogGroup"
         items={bloodTypes}
@@ -211,14 +238,31 @@ const createUserNameValidationSchema = z.object({
       name="permanentAddress" className="form-control" placeholder="Your permanentAddress"
       />
       </div> 
+
+
+      <div className="col-md-6  mb-4">
+        <label htmlFor="wantToDonateBlood" className="d-flex align-items-center gap-2">
+          
+     <input type="checkbox" className="" onChange={e=>setwantToDonateBlood(e.target.checked)} name="wantToDonateBlood" id="wantToDonateBlood" />
+          Are you want to Donate Blood ? 
+        
+        
+        </label>
+
+     
+      </div> 
+     
       
       
     
       <div className="col-12">
-        <button type="submit" className="red_btn">Submit Now</button>
+        <button type="submit" disabled={loginLoading||registerLoading} className="red_btn">Submit Now</button>
       </div>
+      
     
     </PHForm>
+
+   
   </div>
 </div>
 

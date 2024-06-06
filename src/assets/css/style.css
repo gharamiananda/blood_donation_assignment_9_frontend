@@ -2491,7 +2491,7 @@ footer .footer_bottom p {
 }
 
 .breadcrumb_section {
-  /* background: url("../images/b.jpg") no-repeat; */
+  background: url("../images/b.jpg") no-repeat;
   background-size: cover;
   position: relative;
   z-index: 1;

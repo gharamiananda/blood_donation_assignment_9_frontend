@@ -1,4 +1,7 @@
-import { useEffect } from "react";
+'use client'
+
+
+import { useEffect, useState } from "react";
 import {
   FieldValues,
   FormProvider,
@@ -14,7 +17,6 @@ type TFormConfig = {
 type TFormProps = {
   children: React.ReactNode;
   onSubmit: SubmitHandler<FieldValues>;
-  prefillDataHanlder?: any;
   prefillData?: any;
 
 } & TFormConfig;
@@ -24,19 +26,27 @@ const PHForm = ({
   onSubmit,
   resolver,
   defaultValues,
-  prefillDataHanlder,
   prefillData
 }: TFormProps) => {
-  const formConfig: TFormConfig = {};
 
-  if (resolver) {
-    formConfig["resolver"] = resolver;
-  }
+  const [formConfig,setformConfig] =useState<TFormConfig>({});
 
-  if (defaultValues) {
-    formConfig["defaultValues"] = defaultValues;
-  }
 
+
+
+  useEffect(()=>{
+
+    if (resolver) {
+      setformConfig(prev=>({...prev,resolver})) ;
+    }
+  
+    if (defaultValues) {
+      setformConfig(prev=>({...prev,defaultValues})) ;
+
+    }
+  
+  },[resolver,defaultValues])
+ 
   const methods = useForm(formConfig);
   const { handleSubmit, reset, formState, getValues, watch, setValue } = methods;
 
@@ -48,20 +58,6 @@ const PHForm = ({
 
 
 
-  const handlerrr: SubmitHandler<FieldValues> = (data) => {
-
-    prefillDataHanlder(setValue);
-  };
-
-  // const prefillDataHanlder: SubmitHandler<FieldValues> = (data) => {
-
-
-  //   Object.keys(formConfig.defaultValues||{}).forEach(it=>{
-  //     setValue(it,data[it])
-  //    })
-  //   // reset();
-  // };
-
   useEffect(() => {
     if (prefillData?.id) {
       Object.keys(formConfig.defaultValues || {}).forEach(it => {
@@ -72,9 +68,7 @@ const PHForm = ({
         })
       })
     }
-  }, [prefillData?.id])
-
-  console.log('erorr',getValues(), formState.errors)
+  }, [prefillData?.id]);
 
   return (
     <FormProvider {...methods}>

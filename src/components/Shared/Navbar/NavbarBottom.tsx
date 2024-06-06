@@ -1,11 +1,17 @@
+'use client'
+
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import AuthButton from './AuthButton'
 import AuthProtected from '../AuthProtected'
 import MyProfileBtn from './MyProfileBtn'
+import SidebarCanvus from '@/components/Ui/SidebarCanvus'
 
 const NavbarBottom = () => {
 
+
+  const [show, setShow] = useState(false);
+  
     
   return (
     <div className="header_bottom header_bottom2">
@@ -28,7 +34,7 @@ const NavbarBottom = () => {
             <li><Link href="/about">About Us</Link></li>
             <li><Link href="/donor-list">Donor list</Link></li>
   
-            <li><Link href="profile">contact Us</Link></li>
+            <li><Link href="/contact">contact Us</Link></li>
             <MyProfileBtn />
   
   
@@ -46,7 +52,7 @@ const NavbarBottom = () => {
         <div className="col-lg-10 col-md-8 col-6 d-block d-xxl-none d-xl-none">
           <div className="d-flex align-items-center gap-2 justify-content-end">
             <div className="dropdown dropdown_search">
-              <button className="search-btn " data-bs-toggle="dropdown" aria-expanded="true"><i className="fa-solid fa-magnifying-glass" /></button>
+              {/* <button className="search-btn " data-bs-toggle="dropdown" aria-expanded="true"><i className="fa-solid fa-magnifying-glass" /></button> */}
               <div className="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                 <form className="search-form d-flex align-items-center gap-2">
                   <input type="text" placeholder="Search..." className="theme-input bg-transparent" />
@@ -54,8 +60,8 @@ const NavbarBottom = () => {
                 </form>
               </div>
             </div>
-            <div className="mobile_menu">
-              <button className="header_toggle_btn bg-transparent border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-mobile">
+            <div className="mobile_menu" >
+              <button className="header_toggle_btn bg-transparent border-0" type="button" onClick={()=>setShow(true)} >
                 <span />
                 <span />
                 <span />
@@ -65,6 +71,8 @@ const NavbarBottom = () => {
         </div>
       </div>
     </div>
+<SidebarCanvus  setShow={setShow} show={show} />
+
   </div>
   )
 }

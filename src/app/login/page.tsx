@@ -1,35 +1,35 @@
 "use client";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+
 import Image from "next/image";
 import assets from "@/assets";
 import Link from "next/link";
 import { useForm, SubmitHandler, FieldValues, FieldValue } from "react-hook-form";
-import { modifyPayload } from "@/utils/modifyPayload";
-import { registerPatient } from "@/services/actions/registerPatient";
+
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/auth.services";
 import PHForm from "@/components/Forms/PHForm";
-import PHInput from "@/components/Forms/PHInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AGInput from "@/components/Forms/AGInput";
 import { loginDonor } from "@/services/actions/loginDonor";
 import { useUserLoginMutation } from "@/redux/api/authApi";
+import { useEffect } from "react";
 
 
 const LoginPage = () => {
 
-  const[loginFn,{}]=useUserLoginMutation();
+  const[loginFn,{error}]=useUserLoginMutation<{
+    requestId?: undefined;
+    data?: undefined;
+    error?: any;
+    endpointName?: string | undefined;
+    startedTimeStamp?: undefined;
+    fulfilledTimeStamp?: undefined;
+}>();
+
+  console.log('error', error)
   const router = useRouter();
   const handleLogin = async (values: FieldValues) => {
     const data = values;
@@ -47,10 +47,20 @@ const LoginPage = () => {
           router.push("/profile");
         }
       }
+
     } catch (err: any) {
-      console.error(err.message);
+      console.log('err', err)
+      toast.success(err?.message||'Something went wrong!');
+
     }
   };
+
+  useEffect(()=>{
+    if(error?.data as string){
+      toast.success(error?.data||'Something went wrong!');
+
+    }
+  },[error])
 
 
  const validationSchema = z.object({
@@ -119,7 +129,7 @@ const LoginPage = () => {
                    
 
 
-                    Don`&rsquo;`t have an account?  <Link href="/register">Create an account</Link>
+                    Don&rsquo;t have an account?  <Link href="/register">Create an account</Link>
 
                     </p>
                   </div>

@@ -5,10 +5,9 @@
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/donor-list?limit=10`,
       {
-        method: 'GET',
-        headers: {
-           'Content-Type': 'application/json',
-        }
+      cache:'no-store',
+      credentials:'include'
+
      }
     );
   
@@ -18,6 +17,25 @@
 //       }
       return res;
   };
+
+
+
+ const getDonorListfn = async () => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/donor-list?limit=4`,
+    {
+    cache:'no-store',
+    credentials:'include'
+
+   }
+  );
+
+//     if(!res.ok){
+// throw new Error();
+//         return 
+//       }
+    return res;
+};
 
 
  const getSingleDonor = async (username:string) => {
@@ -41,7 +59,8 @@
 
   const donorService={
     getDonorList,
-    getSingleDonor
+    getSingleDonor,
+    getDonorListfn
   }
 
   export default donorService

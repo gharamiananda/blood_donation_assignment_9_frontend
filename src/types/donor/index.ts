@@ -46,7 +46,10 @@ export const BloodGroup: TBloodGroup[] = [
     isDeleted: boolean,
     fullName: string,
     username: string,
-age:string
+age:string,
+role:string,
+wantToDonateBlood?:boolean,
+user:any
 
   }
   

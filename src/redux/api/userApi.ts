@@ -15,7 +15,29 @@ export const userApi = baseApi.injectEndpoints({
         }
       }
     }),
+
+    usersList: build.query({
+      query: () => ({
+         url: `/users/user-list`,
+         method: 'GET',
+      }),
+      providesTags: [tagTypes.users],
+
+   }),
+   updateUserRequest: build.mutation({
+    query: (data) => {
+
+       console.log('data', data)
+       return {
+          url: `/users/change-status/${data.id}`,
+          method: 'POST',
+
+          data: data.body,
+       };
+    },
+    invalidatesTags: [tagTypes.users],
+ }),
   }),
 });
 
-export const { useGetSingleUserQuery } = userApi;
+export const { useGetSingleUserQuery ,useUsersListQuery , useUpdateUserRequestMutation} = userApi;

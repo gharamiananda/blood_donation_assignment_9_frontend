@@ -50,7 +50,7 @@ const DonorDetailsPage: FC<{ params: { username: string }, searchParams: Record<
         <div className="container">
           <div className="km__contact__form">
             <div className="row g-5">
-              <RequestForm donorInfo={donorInfo} />
+              <RequestForm donorInfo={donorInfo?.data} />
               <div className="col-xl-5">
                 <div className="km__form__content">
                   <span className="sub__title">Blood Excellence!</span>

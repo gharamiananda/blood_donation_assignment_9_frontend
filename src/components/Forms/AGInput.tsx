@@ -1,4 +1,4 @@
-// import { SxProps, TextField } from "@mui/material";
+import { Form } from "react-bootstrap";
 import { Controller, useFormContext } from "react-hook-form";
 
 type TInputProps = {
@@ -28,12 +28,12 @@ const AGInput = ({
       control={control}
       name={name}
      
-      render={({ field, fieldState: { error } }) => (
+      render={({ field, fieldState: { error ,invalid,isTouched} }) => (
         
         
         <>
          <label  className="fss-18">{label} {required && <span>*</span>}</label>
-        <input 
+        <Form.Control 
         className={className||"form-control"}
         disabled={!!disabld}
         
@@ -43,11 +43,15 @@ const AGInput = ({
     
         type={type}
         placeholder={placeholder||label}
-        required={required}
+        isInvalid={ invalid}
+
         // error={!!error?.message}
         // helperText={error?.message}
         
         />
+          <Form.Control.Feedback type={invalid ?"invalid":'valid'}>
+     {error?.message||'This field is required'}
+      </Form.Control.Feedback>
         </>
        
       )}

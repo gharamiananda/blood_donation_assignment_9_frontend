@@ -1,5 +1,10 @@
 import Image from "next/image";
 
+import f1 from '../../../assets/images/f1.jpg'
+import f2 from '../../../assets/images/f2.jpg'
+import Link from "next/link";
+
+
 
 const Footer = () => {
   return (
@@ -22,11 +27,11 @@ const Footer = () => {
             <div className="footer_content">
               <h5>Quick Links</h5>
               <ul>
-                <li><a href="service.html"><i className="fa-solid fa-angles-right" /> Services</a></li>
-                <li><a href="about.html"><i className="fa-solid fa-angles-right" /> About Us</a></li>
-                <li><a href="campaign.html"><i className="fa-solid fa-angles-right" /> New Campaign</a></li>
-                <li><a href="blog-details.html"><i className="fa-solid fa-angles-right" /> Latest News</a></li>
-                <li><a href="contact.html"><i className="fa-solid fa-angles-right" /> Contact</a></li>
+                <li><Link href="/donor-list"><i className="fa-solid fa-angles-right" /> Services</Link></li>
+                <li><Link href="/donor-list"><i className="fa-solid fa-angles-right" /> About Us</Link></li>
+                <li><Link href="/donor-list"><i className="fa-solid fa-angles-right" /> New Campaign</Link></li>
+                <li><Link href="/donor-list"><i className="fa-solid fa-angles-right" /> Latest News</Link></li>
+                <li><Link href="/donor-list"><i className="fa-solid fa-angles-right" /> Contact</Link></li>
               </ul>
             </div>
           </div>
@@ -34,11 +39,11 @@ const Footer = () => {
             <div className="footer_content">
               <h5>Our Services</h5>
               <ul>
-                <li><a href="donate.html"><i className="fa-solid fa-angles-right" /> Blood Donation</a></li>
-                <li><a href="#"><i className="fa-solid fa-angles-right" /> Health Check</a></li>
-                <li><a href="donate.html"><i className="fa-solid fa-angles-right" /> Blood Bank</a></li>
-                <li><a href="donate.html"><i className="fa-solid fa-angles-right" /> Donate Process</a></li>
-                <li><a href="donate.html"><i className="fa-solid fa-angles-right" /> Blood Info</a></li>
+                <li><Link href="/donor-list"><i className="fa-solid fa-angles-right" /> Blood Donation</Link></li>
+                <li><Link href="/"><i className="fa-solid fa-angles-right" /> Health Check</Link></li>
+                <li><Link href="/donor-list"><i className="fa-solid fa-angles-right" /> Blood Bank</Link></li>
+                <li><Link href="/donor-list"><i className="fa-solid fa-angles-right" /> Donate Process</Link></li>
+                <li><Link href="/donor-list"><i className="fa-solid fa-angles-right" /> Blood Info</Link></li>
               </ul>
             </div>
           </div>
@@ -50,16 +55,16 @@ const Footer = () => {
                   <div className="row align-items-center">
                     <div className="col-4">
                       <div className="fblog_img img">
-                        <a href="blog-details.html"><Image
+                      <Link href="/donor-list"><Image
                         
                         width={400}
                         height={400}
-                        src="/assets/images/f1.jpg" alt='' /></a>
+                        src={f1} alt='' /></Link>
                       </div>
                     </div>
                     <div className="col-8">
                       <div className="fblog_content">
-                        <a href="blog-details.html"> A Formula For Help And Happiness</a>
+                        <Link href="/donor-list"> A Formula For Help And Happiness</Link>
                         <span>18 February, 2022</span>
                       </div>
                     </div>
@@ -69,15 +74,15 @@ const Footer = () => {
                   <div className="row align-items-center">
                     <div className="col-4">
                       <div className="fblog_img img">
-                        <a href="blog-details.html"><Image
+                      <Link href="/donor-list"><Image
                         width={400}
                         height={400}
-                        src="/assets/images/f2.jpg" alt='' /></a>
+                        src={f2} alt='' /></Link>
                       </div>
                     </div>
                     <div className="col-8">
                       <div className="fblog_content">
-                        <a href="blog-details.html"> Donation is hope for poor helpless children</a>
+                        <Link href="/donor-list"> Donation is hope for poor helpless children</Link>
                         <span>18 February, 2022</span>
                       </div>
                     </div>
@@ -106,11 +111,11 @@ const Footer = () => {
                 <li><a href="#"><i className="fa-brands fa-pinterest-p" /></a></li>
               </ul>
               <ul className="page_link d-flex justify-content-xxl-end justify-content-xl-end justify-content-lg-end justify-content-center gap-2 flex-wrap">
-                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                <li><a href="#">/</a></li>
-                <li><a href="terms.html">Terms &amp; Condition</a></li>
-                <li><a href="#">/</a></li>
-                <li><a href="faq.html">FAQ</a></li>
+                <li>  <Link href="/donor-list">Privacy Policy</Link></li>
+                <li><Link href="/donor-list">/</Link></li>
+                <li><Link href="/donor-list">Terms &amp; Condition</Link></li>
+                <li><Link href="/donor-list">/</Link></li>
+                <li><Link href="/donor-list">FAQ</Link></li>
               </ul>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { useUpdateDonorMutation } from '@/redux/api/donorApi'
 import { useGetSingleUserQuery } from '@/redux/api/userApi'
 import { registerPatient } from '@/services/actions/registerPatient'
 import { BloodGroup, Gender, TDonor } from '@/types/donor'
+import TabComponent from '@/utils/TabCOmpo'
 import { modifyPayload } from '@/utils/modifyPayload'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
@@ -15,6 +16,12 @@ import React, { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from "zod";
+import UpdateProfileForm from './components/UpdateProfileForm'
+import FillExample from '@/utils/Tabsss'
+import Image from 'next/image'
+import DragAndDropFileUpload from '@/utils/DrgAndDropFileUpload'
+import { Button } from 'react-bootstrap'
+import { useChangePasswordMutation } from '@/redux/api/authApi'
 
 const ProfilePage = () => {
   const { data:profileData, isFetching } = useGetSingleUserQuery<{ data: TDonor, isFetching: boolean }>(undefined)
@@ -22,249 +29,183 @@ const ProfilePage = () => {
 
 
 
-  const updateUserNameValidationSchema = z.object({
-    firstName: z.string().min(3).max(20).optional(),
-    middleName: z.string().min(3).max(20).optional(),
-    lastName: z.string().min(3).max(20).optional(),
-  });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
+  console.log('selectedFile', selectedFile)
   const updateDonorValidationSchema = z.object({
     
-      name: updateUserNameValidationSchema,
-      gender: z.enum([...Gender] as [string, ...string[]]).optional(),
-      dateOfBirth: z.string().optional(),
-      contactNo: z.string().optional(),
-      emergencyContactNo: z.string().optional(),
-      bloogGroup: z.enum([...BloodGroup] as [string, ...string[]]).optional(),
-      presentAddress: z.string().optional(),
-      permanentAddress: z.string().optional(),
-      age: z.string().optional()  ,
-      availability:z.any()
-
+    oldPassword: z.string({
+      required_error: 'Old password is required',
+    }),
+    newPassword: z.string({ required_error: 'Password is required' }),
+    confirmPassword:  z.string({ required_error: 'Password is required' }),
     
-  });
+  }).refine(
+    (values) => {
+      return values.confirmPassword === values.newPassword;
+    },
+    {
+      message: "Passwords must match!",
+      path: ["confirmPassword"],
+    }
+  );
 
   const [defaultValues, setdefaultValues] = useState({
 
-    _id: '',
-    id: '',
-    name: {
-      firstName: '',
-      middleName: '',
-      lastName: ''
-
-    },
-    gender: 'male',
-    dateOfBirth: '',
-    email: '',
-    contactNo: '',
-    bloogGroup: '',
-    presentAddress: '',
-    permanentAddress: '',
-    profileImg: '',
-    fullName: '',
-    username: '',
-    age:'',
-    availability:true
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword:''
 
   });
-  const router = useRouter();
-  const bloodTypes = [
-    { value: "A_POSITIVE", label: "A+" },
-    { value: "A_NEGETIVE", label: "A-" },
-    { value: "B_POSITIVE", label: "B+" },
-    { value: "B_NEGETIVE", label: "B-" },
-    { value: "AB_POSITIVE", label: "AB+" },
-    { value: "AB_NEGETIVE", label: "AB-" },
 
-    { value: "O_POSITIVE", label: "O+" },
-    { value: "O_NEGETIVE", label: "O-" },
-  ];
-  const availabilityData = [
-    { value:true, label: "Yes" },
-    { value: false, label: "No" },
-  ];
+  const [updateDonorFn] = useUpdateDonorMutation();
+  const [changePasswordFn] = useChangePasswordMutation();
 
-  const [updateDonorFn] = useUpdateDonorMutation()
-  const handleRegister = async (values: FieldValues) => {
+  const handleUpdatePasswordFn = async (values: FieldValues) => {
     const data = modifyPayload({ ...values, age: Number(values.age)});
 console.log('datamodifyPayload', data)
+    try {
+
+      const res: any = await changePasswordFn(values);
+
+
+      console.log('resdatadata', res)
+      if (res?.data?.statusCode===200) {
+        toast.success(res?.data?.message);
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
+  };
+  return (
+
+    <>
+
+<div className="container py-5">
+  <div className="main-body">
+    <div className="row">
+      <div className="col-lg-4">
+
+
+
+      
+              <div className="appointment">
+
+       
+            <div className="d-flex flex-column align-items-center text-center">
+
+            {profileData?.role ==='superAdmin' && 
+                  <h4 className="mb-3">Welcome to Admin Dashboard</h4>
+            
+  }
+           { profileData?.role !=='superAdmin' &&   <>
+
+
+
+              <Image src={profileData?.profileImg || "https://bootdey.com/img/Content/avatar/avatar6.png"} alt="Admin"  className="rounded-circle p-1 bg-primary" width={400} height={600} />
+              <DragAndDropFileUpload
+  selectedFile={selectedFile}
+  setSelectedFile={setSelectedFile}
+  />
+
+  {selectedFile && <><Button  onClick={async()=>{
+console.log('selectedFile inside', selectedFile)
+
+const allValues:Record<string,unknown>={...profileData, age: Number(profileData.age)}
+
+    if(selectedFile){
+      allValues['file']=selectedFile
+    }
+    const data = modifyPayload(allValues);
     try {
       const res: any = await updateDonorFn({id:profileData?.id,body:data});
 
       if (res?.data?.id) {
         toast.success(res?.data?.message);
 
-        // if (result?.data?.accessToken) {
-        //   storeUserInfo({ accessToken: result?.data?.accessToken });
-        //   // router.push("/dashboard");
-        // }
       }
     } catch (err: any) {
       console.error(err.message);
     }
-  };
 
+  }}>Upload Profile</Button></>}
 
-  //   useEffect(()=>{
-  // if(data?.id){
-  //   // const previousData:Partial<TDonor>={
+  </>}
 
-  //   // }
-  //   // const apiData=data
-  //   //  Object.keys(defaultValues).forEach((it)=>{
-  //   //   previousData[it]=apiData[it]
-  //   // });
-  //   setdefaultValues(data)
+              <div className="mt-3">
+                {/* <h4>{profileData?.name}</h4> */}
+              <h5>{`${profileData?.name?.firstName??""} ${profileData?.name?.middleName??''} ${profileData?.name?.lastName??''}`} {profileData?.role ==='superAdmin' &&  profileData?.email}</h5>
 
-  // }
-  //   },[data])
-
-  console.log('profileData', profileData)
-  return (
-
-    <>
-
-
-      <section className="km__message__box ptb-120">
-        <div className="container">
-          <div className="row g-5">
-            <div className="col-12">
-              <div className="km__box__form">
-                <h4 className="mb-40">Get In Touch</h4>
-                <p className="mb-30">
-                  On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-                  demoralized by the charms
-                </p>
-
-                {
-                  isFetching ? <p>loading userinfo...</p> :
-                <div className="appointment">
-                  <h4 className="mb-3">Update User</h4>
+                <p className="text-secondary mb-1">{profileData?.bloogGroup}</p>
+                <p className="text-muted font-size-sm">{profileData?.presentAddress}</p>
+              </div>
+            </div>
+            <hr className="my-4" />
+           {profileData?.role !=='superAdmin' &&  <ul className="list-group list-group-flush">
+             
+            <>
+                  <h4 className="mb-3">Update Password</h4>
 
                   <PHForm
-                    prefillData={profileData}
-                    onSubmit={handleRegister}
+                    onSubmit={handleUpdatePasswordFn}
                     resolver={zodResolver(updateDonorValidationSchema)}
                     defaultValues={defaultValues}  >
 
-                    <div className="col-md-4 col-12 mb-4">
+<div className="col-12  mb-4">
                       <AGInput
-                        label="firstName" required
-                        name="name.firstName" className="form-control" placeholder="Your firstName"
+                      type='password'
+                        label="password" required
+                        name="oldPassword" className="form-control" placeholder="Your oldPassword password"
                       />
                     </div>
-
-                    <div className="col-md-4 col-12 mb-4">
+                    <div className="col-12  mb-4">
                       <AGInput
-                        label="middleName" required
-                        name="name.middleName" className="form-control" placeholder="Your middleName"
+                      type='password'
+
+                        label="newPassword" required
+                        name="newPassword" className="form-control" placeholder="Your newPassword"
                       />
                     </div>
-                    <div className="col-md-4 col-12 mb-4">
+                    <div className="col-12  mb-4">
                       <AGInput
-                        label="lastName" required
-                        name="name.lastName" className="form-control" placeholder="Your lastName"
+                        label="newPassword" required
+                        name="confirmPassword" className="form-control" placeholder="Your confirm newPassword"
                       />
                     </div>
-                    <div className="col-md-6 mb-4">
-                      <AGInput
-                        disabld={true}
-
-                        label="Username" required
-                        name="username" className="form-control" placeholder="Your username"
-                      />
-
-                    </div>
-                    <div className="col-md-6 mb-4">
-                      <AGInput
-                        type="number"
-                        label="age" required
-                        name="age" className="form-control" placeholder="Your age"
-                      />
-
-                    </div>
-                   
-                    <div className="col-md-6  mb-4">
-                      <AGInput
-                        label="contactNo" required
-                        name="contactNo" className="form-control" placeholder="Your contactNo"
-                      />
-
-                    </div>
-                    <div className="col-md-6 mb-4">
-                      <AGInput
-                        disabld={true}
-                        label="email" required
-                        name="email" className="form-control" placeholder="Your email"
-                      />
-
-
-                    </div>
-                    <div className="col-md-6 mb-4">
-                      <AGInput
-                        type="date"
-                        label="dateOfBirth" required
-                        name="dateOfBirth" className="form-control" placeholder="Your dateOfBirth"
-                      />
-
-
-                    </div>
-
-                    <div className="col-md-6 mb-4">
-                      <AgSelectField
-                        label="Gender"
-                        name="gender"
-                        items={[{ label: 'Male', value: 'male' }, { label: 'Female', value: 'female' }, { label: 'other', value: 'other' }]}
-
-                      />
-                    </div>
-                    <div className="col-md-6 mb-4">
-                      <AgSelectField
-                        label="Bloog Group"
-                        name="bloogGroup"
-                        items={bloodTypes}
-
-                      />
-                    </div>
-                    <div className="col-md-6  mb-4">
-                      <AGInput
-                        label="presentAddress" required
-                        name="presentAddress" className="form-control" placeholder="Your presentAddress"
-                      />
-                    </div>
-                    <div className="col-md-6  mb-4">
-                      <AGInput
-                        label="permanentAddress" required
-                        name="permanentAddress" className="form-control" placeholder="Your permanentAddress"
-                      />
-                    </div>
-
-                    <div className="col-md-6 mb-4">
-                      <AgSelectField
-                        label="availability"
-                        name="availability"
-                        items={availabilityData}
-
-                      />
-                    </div>
-
 
 
                     <div className="col-12">
-                      <button type="submit" className="red_btn">Update Profile</button>
+                      <button type="submit" className="red_btn">Change Password</button>
                     </div>
 
                   </PHForm>
-                </div>
-                }
+                </>
 
-              </div>
-            </div>
 
+            </ul>}
+       
+
+        </div>
+      
+
+      </div>
+      <div className="col-lg-8">
+      <div className="appointment">
+
+        {/* <div className="card">
+          <div className="card-body"> */}
+            <FillExample />
+          
+          
           </div>
         </div>
-      </section>
+        </div>
+
+      
+      {/* </div>
+    </div> */}
+  </div>
+</div>
 
     </>
 

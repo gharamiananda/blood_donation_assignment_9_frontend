@@ -1,6 +1,7 @@
 
 
 
+import SidebarCanvus from '@/components/Ui/SidebarCanvus';
 import NavbarBottom from './NavbarBottom';
 
 const Navbar = () => {
@@ -15,7 +16,7 @@ const Navbar = () => {
        <div className="col-xl-3 col-lg-3">
          <div className="header_top_content">
            <span><i className="fa-solid fa-phone" /></span>
-           <a href="tel:01977259912">+01 (977) 2599 12</a>
+           <a href="tel:01878789876">+01 (977) 18787</a>
          </div>
        </div>
        <div className="col-xl-3 col-lg-3">
@@ -45,6 +46,8 @@ const Navbar = () => {
    </div>
  </div>
  <NavbarBottom />
+
+
 
 </header>
    );

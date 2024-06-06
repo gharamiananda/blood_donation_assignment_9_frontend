@@ -7,21 +7,25 @@ import { useCreateRequestMutation } from '@/redux/api/RequestApi';
 import { useGetSingleUserQuery } from '@/redux/api/userApi';
 import { BloodGroup, TDonor, TDonorRes } from '@/types/donor';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import React, { FC } from 'react'
 import { FieldValues } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from "zod";
 
 
-const RequestForm:FC<{donorInfo:TDonorRes}> = ({donorInfo}) => {
+const RequestForm:FC<{donorInfo:TDonor}> = ({donorInfo}) => {
 
 
 
    const { data:myprofileData, isFetching } = useGetSingleUserQuery<{ data: TDonor, isFetching: boolean }>(undefined)
 
 
-const [requestCreateFn]=useCreateRequestMutation();
+const [requestCreateFn,{isLoading,isSuccess}]=useCreateRequestMutation();
+const router=useRouter();
 
+
+console.log('myprofileData', myprofileData)
  const validationSchema = z.object({
     reason: z.string(),
     phoneNumber:z.string(),
@@ -35,8 +39,11 @@ const [requestCreateFn]=useCreateRequestMutation();
    
     reason: "",
     dateOfBirth: "",
-    bloogGroup: ""
-    
+    bloogGroup: "",
+    fullName:'',
+    email:'',
+    age:'',
+    gender:''
   };
     const bloodTypes = [
         { value: "A_POSITIVE", label: "A+" },
@@ -49,15 +56,18 @@ const [requestCreateFn]=useCreateRequestMutation();
         { value: "O_POSITIVE", label: "O+" },
         { value: "O_NEGETIVE", label: "O-" },
       ];
-
   const handleRegister = async (values: FieldValues) => {
     // const data = modifyPayload({ ...values, age: Number(values.age) });
 
     try {
-      const res: any = await requestCreateFn({...values,donorId:donorInfo?.data?.id});
+      const res: any = await requestCreateFn({...values,donorId:donorInfo?.id,requesterName :myprofileData?.fullName,donorName:donorInfo?.fullName});
 
-      if (res?.data?.id) {
-        toast.success(res?.message);
+
+      console.log('res', res?.data)
+      if (res?.data?.statusCode===200) {
+        toast.success(res?.data?.message);
+
+        router.push('/profile')
 
       }
     } catch (err: any) {
@@ -81,7 +91,7 @@ const [requestCreateFn]=useCreateRequestMutation();
         onSubmit={handleRegister}
         resolver={zodResolver(validationSchema)}
         defaultValues={defaultValues} 
-        prefillData={{...myprofileData}}
+        prefillData={myprofileData}
         
         >
 
@@ -89,7 +99,7 @@ const [requestCreateFn]=useCreateRequestMutation();
         <div className="col-md-6  mb-4">
           <AGInput
             label="Full Name" required
-            name="fullname" disabld  className="form-control" placeholder="Your Full Name"
+            name="fullName" disabld  className="form-control" placeholder="Your Full Name"
           />
 
         </div>
@@ -185,7 +195,7 @@ const [requestCreateFn]=useCreateRequestMutation();
 
 
         <div className="col-12">
-          <button type="submit" className="contact__btn">
+          <button type="submit" className="contact__btn" disabled={isLoading}>
           Submit Request
           <i className="fa-solid fa-angles-right" />
         </button>

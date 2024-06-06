@@ -15,7 +15,11 @@ import d3 from '../../assets/images/d3.png';
 import b1 from '../../assets/images/b1.png';
 
 
+
 import Link from 'next/link';
+import DonorListComponent from '@/components/Donor/DonorList';
+import SearchForm from '@/utils/SearchForm';
+import SidebarCanvus from '@/components/Ui/SidebarCanvus';
 
 
 
@@ -56,8 +60,8 @@ const HomePage = () => {
 
         <section className="register_donate ptb-115 gray">
           <div className="container">
-            <div className="row g-0 register_top">
-              <div className="col-xl-6 col-lg-6 col-12">
+            <div className="row g-0 register_top black_bg">
+              <div className="col-xl-6 col-lg-6 col-12 h-100">
                 <div className="register red_bg">
                   <div className="register_content">
                     <h4>Register Now</h4>
@@ -70,16 +74,19 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-6 col-lg-6  col-12">
+              <div className="col-xl-6 col-lg-6  col-12 h-100">
                 <div className="register black_bg">
                   <div className="register_content">
-                    <h4>Donate Now</h4>
-                    <p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is
-                      pain,
-                    </p>
+                    <h4>Need Blood Now</h4>
+                  
+
+                    <div className="bl__sidebar__widget search__widget  ">
+         <SearchForm />
+          </div>
+          
                   </div>
                   <div className="register_icon red_hover">
-                    <Link href="/register"><i className="fa-solid fa-arrow-right-to-bracket" /></Link>
+                    <Link href="/donor-list"><i className="fa-solid fa-arrow-right-to-bracket" /></Link>
                   </div>
                 </div>
               </div>
@@ -182,29 +189,32 @@ const HomePage = () => {
             <div className="container position-relative">
               <div className="row">
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                  <div className="counter_item text-center">
-                    <Image width={500} height={500} src="/assets/images/icon/c1.png" alt='' />
+                  <div className="counter_item text-center d-flex flex-column align-items-center">
+                    <Image width={50} height={50} src={d1} alt='' />
                     <h2><span className="count">25</span></h2>
                     <p>Year experience</p>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                  <div className="counter_item text-center">
-                    <Image width={500} height={500} src="/assets/images/icon/c2.png" alt='' />
+                  <div className="counter_item text-center d-flex flex-column align-items-center">
+                  <Image width={50} height={50} src={d1} alt='' />
+
                     <h2><span className="count">3225</span></h2>
                     <p>happy donors</p>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                  <div className="counter_item text-center">
-                    <Image width={500} height={500} src="/assets/images/icon/c3.png" alt='' />
+                  <div className="counter_item text-center d-flex flex-column align-items-center">
+                  <Image width={50} height={50} src={d1} alt='' />
+
                     <h2><span className="count">90</span></h2>
                     <p>total awards</p>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-                  <div className="counter_item text-center">
-                    <Image width={500} height={500} src="/assets/images/icon/c4.png" alt='' />
+                  <div className="counter_item text-center d-flex flex-column align-items-center">
+                  <Image width={50} height={50} src={d1} alt='' />
+
                     <h2><span className="count">3168</span></h2>
                     <p>happy recipient</p>
                   </div>
@@ -226,7 +236,7 @@ const HomePage = () => {
                 <div className="col-xl-6 col-lg-6 col-md-6  col-12 mb-5 order_1">
                   <div className="service_item">
                     <div className="img">
-                      <Image width={500} height={500} src={"/assets/images/s1.jpg" }alt='' />
+                      <Image width={500} height={500} src={s1} alt='' />
                     </div>
                   </div>
                 </div>
@@ -257,14 +267,14 @@ const HomePage = () => {
                 <div className="col-xl-6 col-lg-6 col-md-6  col-12 mb-5 order_4">
                   <div className="service_item">
                     <div className="img">
-                      <Image width={500} height={500} src={"/assets/images/s2.jpg"} alt='' />
+                      <Image width={500} height={500}  src={s2}  alt='' />
                     </div>
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6  col-12 mb-5 order_5">
                   <div className="service_item">
                     <div className="img">
-                      <Image width={500} height={500} src="/assets/images/s3.jpg" alt='' />
+                      <Image width={500} height={500} src={s3} alt='' />
                     </div>
                   </div>
                 </div>
@@ -540,142 +550,11 @@ const HomePage = () => {
               </div>
             </div>
           </section>
-          <section className="blood ptb-115">
-            <div className="container">
-              <div className="row">
-                <div className="col-12">
-                  <div className="common_title1 text-center">
-                    <p>blood owner</p>
-                    <h2>We Are Blood Donor Group</h2>
-                    <div className="blood_play position-relative">
-                      <a href="https://youtu.be/K87aFjB7Ff0?si=kpgANQNewn8DSOtq" data-fancybox className="red_bg d-inline-flex align-items-center justify-content-center"><i className="fa-solid fa-play" /></a>
-                      <Image width={500} height={500} src={b1} alt='' />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className="request">
-            <div className="container">
-              <div className="row">
-                <div className="col-xl-6 col-lg-6 col-md-6 col-12 mb-4 mb-xl-0 mb-lg-0">
-                  <div className="current1">
-                    <h4>Current Blood Request</h4>
-                    <ul>
-                      <li><i className="fa-solid fa-heart" /> B+ Washington, USA (13.02.2022)</li>
-                      <li><i className="fa-solid fa-heart" /> O+ Washington, USA (13.02.2022)</li>
-                      <li><i className="fa-solid fa-heart" /> A+ Washington, USA (13.02.2022)</li>
-                      <li><i className="fa-solid fa-heart" /> A- Washington, USA (13.02.2022)</li>
-                      <li><i className="fa-solid fa-heart" /> AB+ Washington, USA (13.02.2022)</li>
-                      <li><i className="fa-solid fa-heart" /> B- Washington, USA (13.02.2022)</li>
-                      <li><i className="fa-solid fa-heart" /> O- Washington, USA (13.02.2022)</li>
-                      <li><i className="fa-solid fa-heart" /> AB- Washington, USA (13.02.2022)</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="col-xl-6 col-lg-6 col-md-6 col-12">
-                  <div className="appointment">
-                    <h4>Request Appointment Here</h4>
-                    <form action="#" className="row hm1_contact_form">
-                      <div className="col-xl-6 col-12 mb-4">
-                        <input type="text" className="form-control" placeholder="Your Name" />
-                      </div>
-                      <div className="col-xl-6 col-12 mb-4">
-                        <input type="text" className="form-control" placeholder="Phone Number" />
-                      </div>
-                      <div className="col-12 mb-4">
-                        <input type="text" className="form-control" placeholder="Your Email" />
-                      </div>
-                      <div className="col-12 mb-4">
-                        <select className="form-select">
-                          <option value="d">Donation Type</option>
-                          <option value="d">Donation Type</option>
-                          <option value="d">Donation Type</option>
-                          <option value="d">Donation Type</option>
-                        </select>
-                      </div>
-                      <div className="col-12 mb-4">
-                        <textarea className="form-control" defaultValue={"Your Message"} />
-                      </div>
-                      <div className="col-12">
-                        <button type="submit" className="red_btn">Submit Now</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+      
           <section className="team ptb-115">
             <div className="container">
-              <div className="row mb-5">
-                <div className="col-12">
-                  <div className="common_title text-center">
-                 
-                    <h2>Meet Donors</h2>
-                  </div>
-                </div>
-              </div>
-              <div className="row justify-content-center">
-                <div className="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
-                  <div className="team_details">
-                    <div className="team_img">
-                      <Image width={500} height={500} src="/assets/images/t1.jpg" alt='' className="w-100" />
-                      <ul className="d-flex">
-                        <li><a href="#"><i className="fa-brands fa-facebook-f" /></a></li>
-                        <li><a href="#"><i className="fa-brands fa-twitter" /></a></li>
-                        <li><a href="#"><i className="fa-brands fa-instagram" /></a></li>
-                        <li><a href="#"><i className="fa-brands fa-pinterest-p" /></a></li>
-                      </ul>
-                    </div>
-                    <div className="team_content text-center">
-                      <a href="team-member.html">
-                        <h5>Nora Khaypeia</h5>
-                      </a>
-                      <p>Co-Founder</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
-                  <div className="team_details">
-                    <div className="team_img ">
-                      <Image width={500} height={500} src="/assets/images/t2.jpg" alt='' className="w-100" />
-                      <ul className="d-flex">
-                        <li><a href="#"><i className="fa-brands fa-facebook-f" /></a></li>
-                        <li><a href="#"><i className="fa-brands fa-twitter" /></a></li>
-                        <li><a href="#"><i className="fa-brands fa-instagram" /></a></li>
-                        <li><a href="#"><i className="fa-brands fa-pinterest-p" /></a></li>
-                      </ul>
-                    </div>
-                    <div className="team_content text-center">
-                      <a href="team-member.html">
-                        <h5>Alex Joshan Deo</h5>
-                      </a>
-                      <p>Co-Founder</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
-                  <div className="team_details">
-                    <div className="team_img ">
-                      <Image width={500} height={500} src="/assets/images/t3.jpg" alt='' className="w-100" />
-                      <ul className="d-flex">
-                        <li><a href="#"><i className="fa-brands fa-facebook-f" /></a></li>
-                        <li><a href="#"><i className="fa-brands fa-twitter" /></a></li>
-                        <li><a href="#"><i className="fa-brands fa-instagram" /></a></li>
-                        <li><a href="#"><i className="fa-brands fa-pinterest-p" /></a></li>
-                      </ul>
-                    </div>
-                    <div className="team_content text-center">
-                      <a href="team-member.html">
-                        <h5>Joshan Khaypeia</h5>
-                      </a>
-                      <p>Co-Founder</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            
+              <DonorListComponent />
             </div>
           </section>
         
@@ -684,7 +563,7 @@ const HomePage = () => {
               <div className="row align-items-center">
                 <div className="col-xl-9 col-lg-9  col-12">
                   <div className="change_content">
-                    <h2>Let`&rsquo;`s change the world, Join us now!</h2>
+                    <h2> Let&rsquo;s change the world, Join us now!</h2>
                     <p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain,
                       but occasionally
                       circumstances occur in which toil and pain can procure reat pleasure.</p>
@@ -696,6 +575,8 @@ const HomePage = () => {
               </div>
             </div>
           </section>
+
+          
 
           <div className="offcanvas offcanvas-start" id="offcanvas-mobile">
             <div className="offcanvas-body">
