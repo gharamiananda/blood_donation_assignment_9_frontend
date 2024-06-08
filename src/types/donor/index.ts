@@ -35,6 +35,7 @@ export const BloodGroup: TBloodGroup[] = [
   lastName:string
         
     },
+    address?:string;
     gender: TGender,
     dateOfBirth: string,
     email: string,
@@ -47,6 +48,7 @@ export const BloodGroup: TBloodGroup[] = [
     isDeleted: boolean,
     fullName: string,
     username: string,
+    
 age:string,
 role:string,
 wantToDonateBlood?:boolean,

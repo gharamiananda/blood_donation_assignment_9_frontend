@@ -8,7 +8,7 @@ function TooltipCustom({showInfo}:{showInfo:any}) {
   return (
     <OverlayTrigger
       placement="bottom"
-      overlay={<Tooltip id="button-tooltip-2">{`${showInfo?.name?.firstName??''} ${showInfo?.name?.lastName??''}`} {`(${showInfo?.state??''},${showInfo?.city??''})`}</Tooltip>}
+      overlay={<Tooltip id="button-tooltip-2">{`${showInfo?.name?.firstName??''} ${showInfo?.name?.lastName??''}`} {`(${showInfo?.address?.label??''}})`}</Tooltip>}
     >
       {({ ref, ...triggerHandler }) => (
         <Button

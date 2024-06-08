@@ -60,7 +60,7 @@ const DonorDetailsPage: FC<{ params: { username: string }, searchParams: Record<
 
 
                   <div className='border-radious-100 p-3'>
-                    <Image src={''} alt='' width={200} height={200} />
+                    <Image src={donorInfo?.data?.profileImg as string} alt='' width={200} height={200} />
                   </div>
                   <ul className="km__address">
                     <li>
@@ -72,13 +72,13 @@ const DonorDetailsPage: FC<{ params: { username: string }, searchParams: Record<
                       <i className="fas fa-location-dot" />
                       <span>blood group: {donorInfo?.data?.bloogGroup}</span>
                     </li>
-                    <li>
+                    {/* <li>
                       <i className="fa fa-phone-alt" />
                       <span>Emergency Line: {donorInfo?.data?.contactNo}</span>
-                    </li>
+                    </li> */}
                     <li>
                       <i className="fas fa-location-dot" />
-                      <span>Location: {donorInfo?.data?.permanentAddress}</span>
+                      <span>Location: {`${donorInfo?.data?.address ??''}`}</span>
                     </li>
 
                   </ul>

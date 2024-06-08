@@ -10,6 +10,7 @@ import mapImg from '../../assets/images/google-maps.png'
 import { Tooltip } from 'react-bootstrap';
 import TooltipCustom from './TooltipCustom';
 import { useGetAllDonorsQuery } from '@/redux/api/donorApi';
+import { TDonor } from '@/types/donor';
 
 // Sample user data
 const users = [
@@ -59,13 +60,13 @@ const DonorMap = () => {
       mapStyle="mapbox://styles/mapbox/streets-v9"
 
       mapboxAccessToken={MAPBOX_TOKEN}
-      onViewportChange={(viewport) => setViewport(viewport)}
+      // onViewportChange={(viewport) => setViewport(viewport)}
     >
-      {donorList?.data?.map(user => (
+      {donorList?.data?.map((user:any) => (
         <Marker
         
         
-        key={user?._id} latitude={user?.latitude ||   37.78} longitude={user?.longitude ||  -122.41}>
+        key={user?._id} latitude={user?.address?.properties?.latitude ||   37.78} longitude={user?.address?.properties?.longitude ||  -122.41}>
           <button className="marker-btn" onClick={(e) => {
             e.preventDefault();
             setSelectedUser(user);

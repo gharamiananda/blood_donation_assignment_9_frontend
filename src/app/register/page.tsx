@@ -18,10 +18,12 @@ import DragAndDropFileUpload from "@/utils/DrgAndDropFileUpload";
 import { useUserLoginMutation } from "@/redux/api/authApi";
 import { useCreateDonorMutation } from "@/redux/api/donorApi";
 import StateCity from "./components/StateCity";
+import SearchSelectBox from "./components/SeachSelectBox";
 
 
 const RegisterPage = () => {
 
+  const [opValue,setOpValue]=useState({})
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -86,13 +88,8 @@ const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
 
 
 
-    console.log('city,country,state', city,country,state,values)
-    if(!city || !country || !state){
-      return;
-    }
 
-
-    const allValues:Record<string,unknown>={...values, country,state,city, age:Number(values.age),wantToDonateBlood}
+    const allValues:Record<string,unknown>={...values, age:Number(values.age),wantToDonateBlood,address:opValue}
 
     if(selectedFile){
       allValues['file']=selectedFile
@@ -128,9 +125,6 @@ const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
   };
 
 
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
 
   return (
     <>
@@ -230,6 +224,16 @@ const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
         />
       </div>
       <div className="col-md-6 mb-4">
+      <SearchSelectBox
+      setOpValue={setOpValue}
+      opValue={opValue}
+      
+      
+      />
+      </div>
+
+      {/* https://api.mapbox.com/search/geocode/v6/forward?q=kolk&proximity=ip&access_token=pk.eyJ1IjoiYW5hbmRhZ2hhcmFtaTEyMyIsImEiOiJjbHg1aWp5YmMwNDN2MnFyMHBjbm81cDFxIn0.Y7MnpnI-Wx8K3YPmkwXrwQ */}
+      <div className="col-md-6 mb-4">
         <AgSelectField
         required
         label="Bloog Group"
@@ -238,15 +242,9 @@ const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
         
         />
       </div>
-     <StateCity
-     country={country} setCountry={setCountry}
-      state={state} setState={setState} 
-      city={city} setCity={setCity}
-     
-     />
 
 
-      <div className="col-md-6  mb-4">
+      <div className="col-12  mb-4">
         <label htmlFor="wantToDonateBlood" className="d-flex align-items-center gap-2">
           
      <input type="checkbox" className="" onChange={e=>setwantToDonateBlood(e.target.checked)} name="wantToDonateBlood" id="wantToDonateBlood" />

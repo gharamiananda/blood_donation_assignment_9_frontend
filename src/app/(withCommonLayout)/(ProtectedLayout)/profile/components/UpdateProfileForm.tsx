@@ -1,17 +1,14 @@
 
 'use client'
-import StateCity from '@/app/register/components/StateCity'
+import SearchSelectBox from '@/app/register/components/SeachSelectBox'
 import AGInput from '@/components/Forms/AGInput'
 import AgSelectField from '@/components/Forms/AgSelectField'
 import PHForm from '@/components/Forms/PHForm'
 import { useUpdateDonorMutation } from '@/redux/api/donorApi'
 import { useGetSingleUserQuery } from '@/redux/api/userApi'
-import { registerPatient } from '@/services/actions/registerPatient'
 import { BloodGroup, Gender, TDonor } from '@/types/donor'
-import TabComponent from '@/utils/TabCOmpo'
 import { modifyPayload } from '@/utils/modifyPayload'
 import { zodResolver } from '@hookform/resolvers/zod'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
@@ -20,6 +17,7 @@ import { z } from "zod";
 
 const UpdateProfileForm = () => {
   const { data:profileData, isFetching } = useGetSingleUserQuery<{ data: TDonor, isFetching: boolean }>(undefined)
+  const [opValue,setOpValue]=useState({})
 
 
 
@@ -40,6 +38,7 @@ console.log('profileData', profileData)
       bloogGroup: z.enum([...BloodGroup] as [string, ...string[]]).optional(),
     
       age: z.string().optional()  ,
+      address :z.any().optional()  ,
       availability:z.any()
 
     
@@ -91,12 +90,9 @@ const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
   const [updateDonorFn] = useUpdateDonorMutation()
   const handleRegister = async (values: FieldValues) => {
 
-    if(!city || !country || !state){
-      return;
-    }
+    
 
-
-    const data = modifyPayload({ ...values,country,state,city, age: Number(values.age),wantToDonateBlood});
+    const data = modifyPayload({ ...values, age: Number(values.age),wantToDonateBlood , address:opValue});
 console.log('datamodifyPayload', data)
     try {
       const res: any = await updateDonorFn({id:profileData?.id,body:data});
@@ -134,19 +130,13 @@ console.log('datamodifyPayload', data)
 
 
 
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
   useEffect(()=>{
     if(profileData?._id){
+     setwantToDonateBlood(!!profileData?.wantToDonateBlood);
+if(profileData?.address){
 
-
-      setCountry(profileData?.country);
-      setState(profileData?.state);
-      setCity(profileData?.city);
-
-
-      setwantToDonateBlood(!!profileData?.wantToDonateBlood)
+  setOpValue(profileData?.address)
+}
     }
   },[profileData]);
 
@@ -250,11 +240,14 @@ console.log('datamodifyPayload', data)
                       />
                     </div>
                    <>
-                   <StateCity 
-                     country={country} setCountry={setCountry}
-                     state={state} setState={setState} 
-                     city={city} setCity={setCity}
-                   />
+      <SearchSelectBox 
+      
+      
+      setOpValue={setOpValue}
+      opValue={opValue}
+      />
+
+               
                    </>
 
                     <div className="col-md-6 mb-4">
@@ -266,7 +259,7 @@ console.log('datamodifyPayload', data)
 
                       />
                     </div>
-                    <div className="col-md-6  mb-4">
+                    <div className="col-12  mb-4">
         <label htmlFor="wantToDonateBlood" className="d-flex align-items-center gap-2">
           
      <input type="checkbox" checked={wantToDonateBlood} className="" onChange={e=>setwantToDonateBlood(e.target.checked)} name="wantToDonateBlood" id="wantToDonateBlood" />
