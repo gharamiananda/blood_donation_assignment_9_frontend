@@ -137,7 +137,7 @@ const allValues:Record<string,unknown>={...profileData, age: Number(profileData.
               <h5>{`${profileData?.name?.firstName??""} ${profileData?.name?.middleName??''} ${profileData?.name?.lastName??''}`} {profileData?.role ==='superAdmin' &&  profileData?.email}</h5>
 
                 <p className="text-secondary mb-1">{profileData?.bloogGroup}</p>
-                <p className="text-muted font-size-sm">{profileData?.presentAddress}</p>
+                <p className="text-muted font-size-sm">{`${profileData?.country ??''} ${profileData?.state ??''} ${profileData?.city ??''}`}</p>
               </div>
             </div>
             <hr className="my-4" />

@@ -41,7 +41,7 @@ export const removeUser = () => {
 
 export const getNewAccessToken = async () => {
    return await axiosInstance({
-      url: 'https://blood-apis.vercel.app/api/v1/auth/refresh-token',
+      url: 'https://assignment9-blood-api.vercel.app/api/v1/auth/refresh-token',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,

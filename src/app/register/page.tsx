@@ -17,6 +17,7 @@ import { useState } from "react";
 import DragAndDropFileUpload from "@/utils/DrgAndDropFileUpload";
 import { useUserLoginMutation } from "@/redux/api/authApi";
 import { useCreateDonorMutation } from "@/redux/api/donorApi";
+import StateCity from "./components/StateCity";
 
 
 const RegisterPage = () => {
@@ -43,8 +44,7 @@ const createUserNameValidationSchema = z.object({
   contactNo: z.string(),
   emergencyContactNo: z.string().optional(),
   bloogGroup: z.enum([...BloodGroup] as [string, ...string[]]),
-  presentAddress: z.string(),
-  permanentAddress: z.string(),
+  
 });
 
 const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
@@ -85,7 +85,14 @@ const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
   const handleRegister = async (values: FieldValues) => {
 
 
-    const allValues:Record<string,unknown>={...values,age:Number(values.age),wantToDonateBlood}
+
+    console.log('city,country,state', city,country,state,values)
+    if(!city || !country || !state){
+      return;
+    }
+
+
+    const allValues:Record<string,unknown>={...values, country,state,city, age:Number(values.age),wantToDonateBlood}
 
     if(selectedFile){
       allValues['file']=selectedFile
@@ -119,6 +126,11 @@ const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
       console.error(err.message||'SOmething went wrong!');
     }
   };
+
+
+  const [country, setCountry] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
 
   return (
     <>
@@ -226,18 +238,12 @@ const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
         
         />
       </div>
-      <div className="col-md-6  mb-4">
-      <AGInput
-      label="presentAddress" required
-      name="presentAddress" className="form-control" placeholder="Your presentAddress"
-      />
-      </div> 
-      <div className="col-md-6  mb-4">
-      <AGInput
-      label="permanentAddress" required
-      name="permanentAddress" className="form-control" placeholder="Your permanentAddress"
-      />
-      </div> 
+     <StateCity
+     country={country} setCountry={setCountry}
+      state={state} setState={setState} 
+      city={city} setCity={setCity}
+     
+     />
 
 
       <div className="col-md-6  mb-4">

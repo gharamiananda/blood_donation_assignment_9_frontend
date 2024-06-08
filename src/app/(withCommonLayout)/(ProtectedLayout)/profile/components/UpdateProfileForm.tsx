@@ -1,5 +1,6 @@
 
 'use client'
+import StateCity from '@/app/register/components/StateCity'
 import AGInput from '@/components/Forms/AGInput'
 import AgSelectField from '@/components/Forms/AgSelectField'
 import PHForm from '@/components/Forms/PHForm'
@@ -37,8 +38,7 @@ console.log('profileData', profileData)
       contactNo: z.string().optional(),
       emergencyContactNo: z.string().optional(),
       bloogGroup: z.enum([...BloodGroup] as [string, ...string[]]).optional(),
-      presentAddress: z.string().optional(),
-      permanentAddress: z.string().optional(),
+    
       age: z.string().optional()  ,
       availability:z.any()
 
@@ -90,7 +90,13 @@ const [wantToDonateBlood,setwantToDonateBlood]=useState(false)
 
   const [updateDonorFn] = useUpdateDonorMutation()
   const handleRegister = async (values: FieldValues) => {
-    const data = modifyPayload({ ...values, age: Number(values.age),wantToDonateBlood});
+
+    if(!city || !country || !state){
+      return;
+    }
+
+
+    const data = modifyPayload({ ...values,country,state,city, age: Number(values.age),wantToDonateBlood});
 console.log('datamodifyPayload', data)
     try {
       const res: any = await updateDonorFn({id:profileData?.id,body:data});
@@ -125,12 +131,27 @@ console.log('datamodifyPayload', data)
 
   console.log('profileData', profileData)
 
+
+
+
+  const [country, setCountry] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
   useEffect(()=>{
     if(profileData?._id){
 
+
+      setCountry(profileData?.country);
+      setState(profileData?.state);
+      setCity(profileData?.city);
+
+
       setwantToDonateBlood(!!profileData?.wantToDonateBlood)
     }
-  },[profileData])
+  },[profileData]);
+
+
+  
   return (
 
     <>
@@ -228,18 +249,13 @@ console.log('datamodifyPayload', data)
 
                       />
                     </div>
-                    <div className="col-md-6  mb-4">
-                      <AGInput
-                        label="presentAddress" required
-                        name="presentAddress" className="form-control" placeholder="Your presentAddress"
-                      />
-                    </div>
-                    <div className="col-md-6  mb-4">
-                      <AGInput
-                        label="permanentAddress" required
-                        name="permanentAddress" className="form-control" placeholder="Your permanentAddress"
-                      />
-                    </div>
+                   <>
+                   <StateCity 
+                     country={country} setCountry={setCountry}
+                     state={state} setState={setState} 
+                     city={city} setCity={setCity}
+                   />
+                   </>
 
                     <div className="col-md-6 mb-4">
                       <AgSelectField

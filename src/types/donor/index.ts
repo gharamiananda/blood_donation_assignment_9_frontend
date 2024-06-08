@@ -40,8 +40,9 @@ export const BloodGroup: TBloodGroup[] = [
     email: string,
     contactNo: string,
     bloogGroup: TBloodGroup,
-    presentAddress: string,
-    permanentAddress: string,
+    country: string;
+    state: string;
+    city: string;
     profileImg: string,
     isDeleted: boolean,
     fullName: string,

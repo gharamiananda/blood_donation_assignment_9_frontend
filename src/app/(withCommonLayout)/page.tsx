@@ -20,6 +20,9 @@ import Link from 'next/link';
 import DonorListComponent from '@/components/Donor/DonorList';
 import SearchForm from '@/utils/SearchForm';
 import SidebarCanvus from '@/components/Ui/SidebarCanvus';
+import DonorMap from '@/components/Map/ShowDonorMap';
+import { Container } from 'react-bootstrap';
+import MapBoxes from '@/components/Map/MapBoxes';
 
 
 
@@ -682,7 +685,14 @@ const HomePage = () => {
 
 
         </section>
+        <div className=" bg-danger">
 
+
+        <Container>
+
+<MapBoxes />
+</Container>
+        </div>
 
 
       </>
