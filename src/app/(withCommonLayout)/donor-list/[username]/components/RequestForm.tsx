@@ -60,7 +60,11 @@ console.log('myprofileData', myprofileData)
     // const data = modifyPayload({ ...values, age: Number(values.age) });
 
     try {
-      const res: any = await requestCreateFn({...values,donorId:donorInfo?.id,requesterName :myprofileData?.fullName,donorName:donorInfo?.fullName});
+      const res: any = await requestCreateFn({...values,donorId:donorInfo?.id,requesterName :myprofileData?.fullName,donorName:
+        
+`${myprofileData?.name?.firstName} ${myprofileData?.name?.lastName}`
+
+      });
 
 
       console.log('res', res?.data)
@@ -91,7 +95,7 @@ console.log('myprofileData', myprofileData)
         onSubmit={handleRegister}
         resolver={zodResolver(validationSchema)}
         defaultValues={defaultValues} 
-        prefillData={myprofileData}
+        prefillData={{...myprofileData,fullName: `${myprofileData?.name?.firstName} ${myprofileData?.name?.lastName}`}}
         
         >
 
