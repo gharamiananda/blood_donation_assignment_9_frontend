@@ -60,11 +60,18 @@ console.log('myprofileData', myprofileData)
     // const data = modifyPayload({ ...values, age: Number(values.age) });
 
     try {
-      const res: any = await requestCreateFn({...values,donorId:donorInfo?.id,requesterName :myprofileData?.fullName,donorName:
+//       const res: any = await requestCreateFn({...values,donorId:donorInfo?.id,requesterName :myprofileData?.fullName,donorName:
         
-`${myprofileData?.name?.firstName} ${myprofileData?.name?.lastName}`
+// `${myprofileData?.name?.firstName} ${myprofileData?.name?.lastName}`
 
-      });
+//       });
+
+      const res: any = await requestCreateFn({...values,donorId:donorInfo?.id,requesterName :
+       `${myprofileData?.name?.firstName} ${myprofileData?.name?.lastName}`
+        
+        ,donorName:
+        `${donorInfo?.name?.firstName} ${donorInfo?.name?.lastName}`});
+
 
 
       console.log('res', res?.data)
