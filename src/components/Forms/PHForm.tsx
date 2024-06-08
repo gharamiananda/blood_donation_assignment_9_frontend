@@ -61,7 +61,7 @@ const PHForm = ({
   useEffect(() => {
     if (prefillData?.id) {
       Object.keys(formConfig.defaultValues || {}).forEach(it => {
-        setValue(it, prefillData[it], {
+        setValue(it, prefillData[it]||'', {
           shouldDirty: true,
           shouldTouch: true,
           shouldValidate: true

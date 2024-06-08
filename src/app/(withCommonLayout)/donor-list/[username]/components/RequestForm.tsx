@@ -95,7 +95,7 @@ console.log('myprofileData', myprofileData)
         onSubmit={handleRegister}
         resolver={zodResolver(validationSchema)}
         defaultValues={defaultValues} 
-        prefillData={{...myprofileData,fullName: `${myprofileData?.name?.firstName} ${myprofileData?.name?.lastName}`}}
+        prefillData={{...myprofileData,fullName: `${myprofileData?.name?.firstName} ${myprofileData?.name?.lastName}`,reason:''}}
         
         >
 
