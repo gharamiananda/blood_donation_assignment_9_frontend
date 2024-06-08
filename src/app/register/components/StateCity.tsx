@@ -32,7 +32,9 @@ name
 : string
   }[]>([]);
 
+const[selectTedCityInfo,setselectTedCityInfo]=useState<any>({})
 
+  console.log('cityData', cityData)
 
 
   // useEffect(() => {
@@ -97,7 +99,12 @@ name
 
 <Form.Select isInvalid={city?.length<1}  aria-label="Default select example" value={city} onChange={e=>setCity(e.target.value)}>
 <option value={''}>Choose a City</option>
-{ cityData?.map(it=><option key={it?.name} value={it?.name}>{it?.name}</option>) }
+{ cityData?.map(it=><option key={it?.name} value={it?.name} 
+
+onClick={()=>{
+  setselectTedCityInfo(it)
+}}
+>{it?.name}</option>) }
 
 </Form.Select>
 <Form.Control.Feedback type={!!city ? "valid":'invalid'}>
